@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <!-- 不叫 DiskCleaner.exe：Glary Utilities 的磁碟清理也叫這個名字，工作管理員裡會分不清。 -->
+    <AssemblyName>DiskSweeper</AssemblyName>
+    <RootNamespace>DiskCleaner</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- 64 位元系統上要用 64 位元跑：32 位元程式看到的 System32 會被轉向，路徑會判斷錯。 -->
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 英文介面的字典（每行「中文、Tab、英文」），見 Lang.cs。 -->
+    <EmbeddedResource Include="en.txt" LogicalName="DiskCleaner.en.txt" />
+  </ItemGroup>
+
+</Project>

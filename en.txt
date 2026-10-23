@@ -1,0 +1,592 @@
+# 英文介面字典：每行「中文<Tab>English」。\r \n \\ 是跳脫寫法，跟原始碼裡的字串一樣；行尾空白寫成 \s。
+ 可用	 free
+ 的擁有權…	 ownership…
+ 的權限…	 permissions…
+.mypy_cache／.pytest_cache／.ruff_cache	.mypy_cache / .pytest_cache / .ruff_cache
+Brave 快取	Brave cache
+CSV 檔 (*.csv)|*.csv	CSV files (*.csv)|*.csv
+ComponentModelCache，VS 下次啟動會重建（VS 開著時會鎖住而略過）	ComponentModelCache; rebuilt the next time VS starts (locked and skipped while VS is open)
+DirectX／NVIDIA／AMD／Intel 的著色器快取，清掉後遊戲第一次載入會稍慢	DirectX / NVIDIA / AMD / Intel shader caches; games load a little slower the first time after cleaning
+Discord 快取	Discord cache
+Edge／Chrome／Brave 的瀏覽紀錄、常用網站（書籤另存，不受影響；Firefox 的紀錄與書籤同檔，不清）。請先關閉瀏覽器	Browsing history and top sites of Edge / Chrome / Brave (bookmarks are stored separately and kept; Firefox keeps history and bookmarks in one file, so it is skipped). Close the browser first
+Edge／Chrome／Brave／Firefox 的 Cookie；清掉後各網站都要重新登入。請先關閉瀏覽器	Cookies of Edge / Chrome / Brave / Firefox; you will have to sign in to websites again. Close the browser first
+Firefox 快取	Firefox cache
+Google Chrome 快取	Google Chrome cache
+IIS 日誌檔案	IIS log files
+INetCache（IE 與部分 WebView 共用）	INetCache (shared by IE and some WebViews)
+KB 以上	KB or larger
+LINE 快取	LINE cache
+LZX（最高壓縮率，適合很少改動的程式）	LZX (best ratio, for programs that rarely change)
+Microsoft Edge 快取	Microsoft Edge cache
+Microsoft Teams 快取	Microsoft Teams cache
+NuGet HTTP 快取	NuGet HTTP cache
+NuGet 全域套件	NuGet global packages
+NuGet 的下載快取（v3-cache、plugins-cache），不影響已還原的套件	NuGet download cache (v3-cache, plugins-cache); restored packages are not affected
+Office 最近使用的檔案	Office recent files
+Spotify 快取	Spotify cache
+VS Code 快取	VS Code cache
+Visual Studio 元件快取	Visual Studio component cache
+Windows Installer 留下的 .tmp（只清最上層的 .tmp，不碰安裝快取）	.tmp files left by Windows Installer (top level only; the installer cache is not touched)
+Windows Update 分享給其他電腦用的快取	Cache Windows Update shares with other PCs
+Windows 元件存放區	Windows component store
+Windows 安裝程式暫存檔	Windows Installer temp files
+Windows 更新	Windows Update
+Windows 錯誤報告（WER）	Windows Error Reporting (WER)
+Word、Excel、PowerPoint 等「最近」清單（檔案本身不受影響；請先關閉 Office）	"Recent" lists of Word, Excel, PowerPoint, etc. (files are not affected; close Office first)
+XPRESS 16K（較慢，壓縮率較高）	XPRESS 16K (slower, better ratio)
+XPRESS 8K（快速，壓縮率中等）	XPRESS 8K (fast, medium ratio)
+\r\n\r\n⚠ 包含最新的還原點，刪掉後就沒辦法退回目前這個狀態。	\r\n\r\n⚠ This includes the newest restore point; after deleting it you cannot roll back to the current state.
+\r\n\r\n⚠ 這是 Microsoft 的服務，改錯可能讓 Windows 功能失常。	\r\n\r\n⚠ This is a Microsoft service; changing it may break Windows features.
+\r\n\r\n以下項目需要系統管理員權限，這次略過：	\r\n\r\nThese items need administrator rights and will be skipped:
+\r\n\r\n請用「檔案 → 以系統管理員身分重新啟動」。	\r\n\r\nUse "File → Restart as administrator".
+\r\n{0} 只剩 {1}（{2:0}%）	\r\n{0} has only {1} left ({2:0}%)
+\r\n當天清理 	\r\nCleaned that day:\s
+\r\n資源回收筒、Windows.old、元件存放區、執行紀錄一律直接清除。	\r\nThe Recycle Bin, Windows.old, the component store and the Run history are always removed directly.
+\r\n（需要系統管理員權限才掃得完整）	\r\n(administrator rights are needed for a complete scan)
+conda 安裝包	conda packages
+npm-cache 與 Yarn 快取，需要時會重新下載	npm-cache and Yarn cache; downloaded again when needed
+npm／Yarn 快取	npm / Yarn cache
+pip 下載過的套件，需要時會重新下載	Packages downloaded by pip; downloaded again when needed
+pip 快取	pip cache
+pkgs 裡下載的壓縮檔（等同 conda clean --tarballs），不動已解開的套件	Downloaded archives in pkgs (same as conda clean --tarballs); extracted packages are kept
+{0:0}% 已用	{0:0}% used
+{0:N0} 個檔案　實際大小 {1}\r\n磁碟上佔用 {2}（{3:0}%）	{0:N0} files   size {1}\r\nsize on disk {2} ({3:0}%)
+{0:yyyy/MM/dd}\r\n可用 {1}／{2}{3}	{0:yyyy/MM/dd}\r\nFree {1} / {2}{3}
+{0} 個相同檔案，各 {1}，可省 {2}	{0} identical files, {1} each, {2} can be saved
+{0} 個處理程序　│　CPU 合計 {1:0}%　│　記憶體合計 {2}	{0} processes   │   CPU total {1:0}%   │   memory total {2}
+{0} 個還原點刪除失敗。	{0} restore points could not be deleted.
+{0} 天內可用空間{1} {2}（{3:yyyy/MM/dd} 起，共 {4} 筆紀錄）	Free space {1} by {2} in {0} days (since {3:yyyy/MM/dd}, {4} records)
+{0}　{1}　({2:0.#}%)	{0}   {1}   ({2:0.#}%)
+{0}　│　計算資料夾大小 {1}/{2}	{0}   │   measuring folder sizes {1}/{2}
+{0}「{1}」？	{0} "{1}"?
+{0}（{1:N0} 個檔案{2}）	{0} ({1:N0} files{2})
+{0}，{1:N0} 個項目，用時 {2:0.0} 秒{3}	{0}, {1:N0} items, {2:0.0} s{3}
+{0}：{1:N0} 個空資料夾	{0}: {1:N0} empty folders
+{0}：{1:N0} 組重複，最多可省 {2}{3}	{0}: {1:N0} duplicate groups, up to {2} can be saved{3}
+{0}：{1}，{2:N0} 個檔案，用時 {3:0.0} 秒（沒權限讀的資料夾不計）	{0}: {1}, {2:N0} files, {3:0.0} s (folders without read access are not counted)
+{0}：粉碎 {1:N0} 個檔案{2}	{0}: {1:N0} files shredded{2}
+• Windows、Program Files 根目錄、使用者資料夾本身不能壓縮；正在執行的程式檔案會被略過。	• Windows, the Program Files root and the user folders themselves cannot be compressed; files of running programs are skipped.
+• XPRESS／LZX 壓縮的檔案被修改時會自動變回未壓縮，所以只適合「裝好就不太動」的資料夾。\r\n	• Files compressed with XPRESS / LZX become uncompressed again when modified, so use them only for folders that rarely change after installation.\r\n
+● 系統管理員模式	● Administrator mode
+　│　一般權限：只能檢視，修改需要系統管理員	   │   Standard user: view only, changes need administrator rights
+　│　資料夾大小計算完成	   │   Folder sizes measured
+、	,
+「Python __pycache__」「.mypy_cache…」只在這些資料夾底下找（會跳過 .git、node_modules）。	"Python __pycache__" and ".mypy_cache…" are only searched under these folders (.git and node_modules are skipped).
+「{0}」已{1}，下次開機生效	"{0}" {1}; takes effect at the next startup
+「{0}」已改成「{1}」	"{0}" changed to "{1}"
+「{0}」指向的程式已經不存在：\r\n{1}\r\n\r\n要移除這個啟動項目嗎？（登錄項目會先備份成 .reg）	The program of "{0}" no longer exists:\r\n{1}\r\n\r\nRemove this startup entry? (Registry entries are backed up to a .reg file first)
+「{0}」的解除安裝程式已經不存在：\r\n{1}\r\n\r\n要把它從已安裝清單中移除嗎？\r\n	The uninstaller of "{0}" no longer exists:\r\n{1}\r\n\r\nRemove it from the installed programs list?\r\n
+「執行」對話框輸入過的指令	Commands typed in the Run dialog
+「所有使用者」的啟動項目需要系統管理員權限才能修改。\r\n請在主視窗用「檔案 → 以系統管理員身分重新啟動」。	Changing "all users" startup entries needs administrator rights.\r\nUse "File → Restart as administrator" in the main window.
+「所有使用者」的項目需要系統管理員權限才能移除。\r\n請在主視窗用「檔案 → 以系統管理員身分重新啟動」。	Removing "all users" entries needs administrator rights.\r\nUse "File → Restart as administrator" in the main window.
+」的資訊	" info
+」，備份：	", backup:
+一般權限：標盾牌的系統項目只掃得到可讀的部分（檔案 → 以系統管理員身分重新啟動）	Standard user: items with a shield are only partly scanned (File → Restart as administrator)
+下載的程式	Downloaded program files
+中…	…
+中文（繁體）	中文（繁體）
+串流快取；下載供離線收聽的歌也放在這裡，清掉要重新下載	Streaming cache; songs downloaded for offline listening are stored here too and must be downloaded again
+今天清理  	Cleaned today\s\s
+以下項目有副作用：\r\n\r\n	These items have side effects:\r\n\r\n
+以下項目需要系統管理員權限才能清理：\r\n	These items need administrator rights to clean:\r\n
+以系統管理員身分重新啟動	Restart as administrator
+位置	Location
+來源	Source
+例如 *.tmp 或 *.log;*.bak	For example *.tmp or *.log;*.bak
+依 CPU	By CPU
+依記憶體	By memory
+修改失敗：	Change failed:
+修改時間	Modified
+修改樣式…	Edit pattern…
+修改設定	Modify settings
+修改／修復 	Modify / repair\s
+修改／修復…	Modify / repair…
+停止	Stop
+停止中	Stopping
+停用	Disable
+停用不需要開機就執行的程式，開機會比較快；跟工作管理員的「啟動應用程式」是同一套設定	Disable programs that don't need to run at startup to boot faster; uses the same settings as Task Manager's "Startup apps"
+備份 	Backing up\s
+備份保留	Keep backups for
+備份時間	Backup time
+備份登錄項目失敗，沒有刪除。	Backing up the registry entry failed; nothing was deleted.
+傳統版與新版 Teams 的網頁快取，不影響聊天紀錄	Web cache of classic and new Teams; chat history is not affected
+傳遞最佳化檔案	Delivery Optimization files
+內容完全相同（比對雜湊值）的檔案分成一組；每組至少要留一份沒勾。雙擊開啟所在資料夾。	Files with identical content (compared by hash) are grouped; keep at least one unchecked file per group. Double-click to open the folder.
+全不選取	Select none
+全部勾選	Check all
+全部取消勾選	Uncheck all
+全部展開	Expand all
+全部收合	Collapse all
+全部選取	Select all
+共	Total
+共 0 次	0 times
+共 {0:N0} 個程式{1}，資料夾合計 {2}	{0:N0} programs{1}, folders total {2}
+共 {0} 份備份，合計 {1}（設定 → 選項 可以調整保留天數）	{0} backups, {1} in total (change how long they are kept in Settings → Options)
+共 {0} 個啟動項目，啟用 {1} 個、停用 {2} 個{3}	{0} startup entries, {1} enabled, {2} disabled{3}
+共 {0} 個還原點	{0} restore points
+共 {0} 次，累計釋放 {1}	{0} times, {1} freed in total
+分析	Analyze
+分析中：	Analyzing:
+分析完成	Analysis complete
+分析時發生錯誤：	Error while analyzing:
+分類	Categories
+分類,項目,路徑,大小(位元組),建立時間	Category,Item,Path,Size (bytes),Created
+刪除	Delete
+刪除 	Deleting\s
+刪除 Windows.old 後就不能再退回之前的 Windows 版本，確定要勾選？	After deleting Windows.old you cannot go back to the previous Windows version. Check it anyway?
+刪除 {0} 個舊的還原點，只保留最新的「{1}」（{2:yyyy/MM/dd HH:mm}）？	Delete {0} old restore points and keep only the newest "{1}" ({2:yyyy/MM/dd HH:mm})?
+刪除中：	Deleting:
+刪除後無法復原（不會進資源回收筒）。	Deleted files cannot be recovered (they don't go to the Recycle Bin).
+刪除檔案	Files deleted
+刪除選取	Delete selected
+刪除選取的 {0} 份備份？刪了就不能還原那些檔案。	Delete the {0} selected backups? Their files can no longer be restored.
+刪除選取的 {0} 個還原點？{1}	Delete the {0} selected restore points?{1}
+剪貼簿	Clipboard
+剪貼簿目前的內容（文字、圖片、複製的檔案）	Current clipboard content (text, images, copied files)
+加入…	Add…
+加入檔案…	Add files…
+加入自己要清理的資料夾與檔名樣式	Add your own folders and file name patterns to clean
+加入資料夾…	Add folder…
+勾選的送進資源回收筒	Send checked to Recycle Bin
+匯出 CSV…	Export CSV…
+匯出失敗：	Export failed:
+匯出掃描結果（CSV）…	Export scan results (CSV)…
+取得 	Taking\s
+取消	Cancel
+取消操作	Cancelled operation
+另一個分頁的工作還在執行，請等它結束或先按「停止」。	A task on another tab is still running; wait for it to finish or press "Stop".
+只保留最新一個	Keep only the newest
+只找	Only
+只會刪除登錄裡的這一筆（不會刪任何檔案），刪除前會先備份成 .reg 檔，雙擊就能還原。	Only this registry entry is deleted (no files). It is backed up to a .reg file first; double-click it to restore.
+可清理	to clean
+各設定檔的 cache2	cache2 of each profile
+名稱	Name
+名稱,發行者,版本,安裝日期,大小(登錄,位元組),資料夾大小(位元組),安裝路徑,範圍,解除安裝命令	Name,Publisher,Version,Installed,Size (registry, bytes),Folder size (bytes),Install location,Scope,Uninstall command
+名稱：	Name:
+否	No
+命令	Command
+哪些程式正在吃 CPU 與記憶體（每 2 秒更新）	Which programs use CPU and memory (updated every 2 seconds)
+啟動	Start
+啟動中	Starting
+啟動資料夾（所有使用者）	Startup folder (all users)
+啟動資料夾（目前使用者）	Startup folder (current user)
+啟動類型	Startup type
+啟用	Enable
+圖片與貼圖快取，不影響聊天紀錄	Image and sticker cache; chat history is not affected
+在「自訂義檔案和資料夾」加入的位置	Locations added in "Custom files and folders"
+型別檢查與測試工具的快取，下次執行會重建；搜尋範圍：	Caches of type checkers and test tools, rebuilt on the next run; searched in:
+執行 	Running\s
+執行中	Running
+執行紀錄（Win+R）	Run history (Win+R)
+增加	increased
+壓縮	Compress
+壓縮中…（大的資料夾要好幾分鐘）	Compressing… (large folders take several minutes)
+壓縮完成	Compression complete
+壓縮後大小	Compressed size
+壓縮資料夾	Compress folder
+壓縮資料夾…	Compress folder…
+外觀	Appearance
+外觀立即套用；語言重新啟動程式後生效。	Appearance applies immediately; language applies after restarting the program.
+外觀與語言	Appearance and language
+大型更新後留下的舊系統，刪了就不能退回舊版	The previous Windows left after a major update; once deleted you cannot roll back
+大小	Size
+大小（登錄）	Size (registry)
+大小：	Size:
+大檔案分析	Large files
+大檔案分析…	Large files…
+天（送進資源回收筒時不另外備份）	days (no extra backup when sending to the Recycle Bin)
+失敗：	failed:
+套用啟動類型	Apply startup type
+套用在系統暫存、使用者暫存、錯誤報告、系統日誌；執行中的程式常把檔案放在暫存資料夾，留一段時間比較安全。	Applies to system temp, user temp, error reports and system logs; running programs often keep files in temp folders, so keeping them for a while is safer.
+字型快取	Font cache
+字型快取服務的資料（服務執行中多半會被鎖住而略過）	Data of the font cache service (usually locked and skipped while the service runs)
+安全	Security
+安裝應用程式	App installed
+安裝日期	Installed
+安裝日期：	Installed:
+安裝殘留	Install leftovers
+安裝殘留…	Install leftovers…
+安裝路徑	Install location
+安裝路徑：	Install location:
+安裝驅動程式	Driver installed
+完成	Done
+將 {0:N0} 個{1}送進資源回收筒？\r\n（之後可以從資源回收筒還原）	Send {0:N0} {1} to the Recycle Bin?\r\n(You can restore them from the Recycle Bin later)
+將清理 {0:N0} 個項目，共 {1}。\r\n\r\n{2}{3}\r\n\r\n確定要清理？	{0:N0} items ({1}) will be cleaned.\r\n\r\n{2}{3}\r\n\r\nClean now?
+專案資料夾裡的 .pyc 編譯快取，執行時會自動重建；搜尋範圍：	Compiled .pyc caches in project folders, rebuilt automatically when run; searched in:
+小時沒變動的檔案（0＝不限）	hours (0 = no limit)
+就緒	Ready
+屬性	Properties
+工作清單	Tasks
+工具	Tools
+已{0} {1:N0} 個項目，{2} {3}{4}	{0} {1:N0} items, {2} {3}{4}
+已下載的更新安裝檔（SoftwareDistribution\\Download），需要時 Windows 會重新下載	Downloaded update installers (SoftwareDistribution\\Download); Windows downloads them again if needed
+已停止	Stopped
+已停止掃描	Scan stopped
+已停止清理。	Cleaning stopped.
+已停止（已處理的檔案維持壓縮狀態）	Stopped (files already processed stay compressed)
+已停止，以下是部分結果	Stopped; partial results below
+已停用	Disabled
+已匯出 {0:N0} 筆：{1}	Exported {0:N0} rows: {1}
+已取消（UAC 選了「否」）	Cancelled ("No" was chosen in UAC)
+已安裝的程式	Installed programs
+已安裝的程式_	InstalledPrograms_
+已安裝的程式…	Installed programs…
+已將 {0:N0} 個{1}送進資源回收筒{2}	Sent {0:N0} {1} to the Recycle Bin{2}
+已將 {0} 個檔案加入忽略清單	Added {0} files to the ignore list
+已將 {0} 個資料夾送進資源回收筒{1}	Sent {0} folders to the Recycle Bin{1}
+已暫停	Paused
+已移除「	Removed "
+已移除，備份：	Removed, backup:
+已結束 	Ended\s
+已處理 {0:N0} 個檔案…	{0:N0} files processed…
+已複製「	Copied "
+已還原 {0:N0} 個檔案，略過 {1:N0} 個（原位已有檔案或無法寫入）	Restored {0:N0} files, skipped {1:N0} (a file already exists or cannot be written)
+已釋放 	Freed\s
+底下完全沒有檔案的資料夾（整棵都空的只列最上層）。有些程式會用到空資料夾（例如設定、外掛資料夾），	Folders that contain no files at all (only the top of an empty tree is listed). Some programs use empty folders (e.g. settings or plug-in folders),
+建立時間	Created
+從清單移除殘留項目…	Remove leftover entry from list…
+快速清理	Quick clean
+快速清理中…	Quick cleaning…
+快速清理失敗：	Quick clean failed:
+快速清理完成：刪除 {0:N0} 個檔案，釋放 {1}	Quick clean done: {0:N0} files deleted, {1} freed
+忽略清單	Ignore list
+忽略清單…	Ignore list…
+忽略清單已更新，下次掃描生效	Ignore list updated; applies to the next scan
+應用程式	Applications
+所以預設都不勾，請只刪自己認得的。	so nothing is checked by default. Only delete folders you recognize.
+所有使用者（32 位元）	All users (32-bit)
+所有使用者（64 位元）	All users (64-bit)
+手動	Manual
+找不到這個資料夾。	Folder not found.
+找不到這個資料夾：	Folder not found:
+找到 {0:N0} 個可清理的項目，點擊「清理」{1}（取消勾選的項目不會清）	Found {0:N0} items. Click "Clean" to {1} them (unchecked items are skipped)
+找到 {0} 個可能的殘留資料夾，共 {1}。預設不勾，請確認是自己認得、已經移除的程式再勾。	Found {0} possible leftover folders, {1} in total. Nothing is checked by default; only check folders of programs you know you removed.
+把 {0} 個資料夾（共 {1}）送進資源回收筒？\r\n如果之後有程式出問題，可以從資源回收筒還原。	Send {0} folders ({1}) to the Recycle Bin?\r\nIf a program has problems later, you can restore them from the Recycle Bin.
+把 {0} 的備份還原到原來的位置？\r\n原位已經有同名檔案的不會覆蓋。	Restore the backup from {0} to the original locations?\r\nExisting files with the same name are not overwritten.
+把「{0}」的啟動類型從「{1}」改成「{2}」？{3}	Change the startup type of "{0}" from "{1}" to "{2}"?{3}
+把檔案或資料夾拖進來，或用上面的按鈕加入。	Drag files or folders here, or use the buttons above.
+按「開始掃描」。判斷依據：已安裝程式、服務、啟動項目、執行中的程式都對不上，而且 180 天內沒有變動、大於 1 MB。	Press "Start scan". A folder is listed when no installed program, service, startup entry or running program refers to it, it has not changed for 180 days and it is larger than 1 MB.
+捷徑已送進資源回收筒	Shortcut sent to the Recycle Bin
+掃描中：	Scanning:
+掃描失敗：	Scan failed:
+掃描完成	Scan complete
+掃描時會列出這些資料夾中符合樣式的檔案（例如 *.tmp；多個用分號分隔）。	Scanning lists files in these folders that match the pattern (e.g. *.tmp; separate several with semicolons).
+掃描時發生錯誤：	Error while scanning:
+掃描結果_	ScanResults_
+掃瞄	Scan
+排程工作請用 Windows 的「工作排程器」刪除。	Delete scheduled tasks with Windows Task Scheduler.
+排程工作（	Scheduled task (
+排程（Windows 工作排程器）	Schedule (Windows Task Scheduler)
+排除此檔案	Exclude this file
+排除此檔案（加入忽略清單）	Exclude this file (add to ignore list)
+搜尋	Search
+搜尋中：	Searching:
+搜尋完成	Search complete
+搜尋時發生錯誤：	Error while searching:
+搜尋路徑…	Search paths…
+收集已安裝程式、服務、啟動項目與執行中的程式…	Collecting installed programs, services, startup entries and running programs…
+方式	Method
+星期一	Monday
+星期三	Wednesday
+星期二	Tuesday
+星期五	Friday
+星期六	Saturday
+星期四	Thursday
+星期日	Sunday
+是	Yes
+時間	Time
+暫存類只清超過	Only clean temp files unchanged for more than
+最大的檔案（目前選的資料夾底下）	Largest files (under the selected folder)
+最大的項目	Largest items
+最小化時縮到系統匣	Minimize to the system tray
+最後修改	Last modified
+最近 30 天	Last 30 days
+最近 90 天	Last 90 days
+最近一年	Last year
+最近使用的檔案	Recent files
+會刪除 Edge、Chrome、Brave 的瀏覽歷史紀錄（書籤不受影響）。\r\n瀏覽器開著時檔案會被鎖住而略過，請先關閉瀏覽器。確定要勾選？	This deletes the browsing history of Edge, Chrome and Brave (bookmarks are kept).\r\nFiles are locked while the browser is open, so close it first. Check it anyway?
+會清掉 Office 各程式「開啟舊檔」裡的最近清單（釘選的也會清掉），檔案本身不受影響。\r\n請先關閉 Office。確定要勾選？	This clears the recent lists in Office's Open dialog (pinned entries too); the files themselves are not affected.\r\nClose Office first. Check it anyway?
+會清掉「執行」（Win+R）對話框的歷史指令。確定要勾選？	This clears the command history of the Run (Win+R) dialog. Check it anyway?
+會清掉「最近使用的檔案」與工作列跳躍清單（釘選的項目也會一起消失），原本的檔案不受影響。確定要勾選？	This clears "Recent files" and taskbar jump lists (pinned entries too); the original files are not affected. Check it anyway?
+會清掉檔案總管的搜尋紀錄與網址列輸入過的路徑。確定要勾選？	This clears File Explorer's search history and typed paths. Check it anyway?
+會清空目前複製的內容。確定要勾選？	This empties what is currently copied. Check it anyway?
+有一組的檔案全部被勾選了，每組至少要留一份：\r\n\r\n	All files of a group are checked; keep at least one per group:\r\n\r\n
+未預期的錯誤	Unexpected error
+桌面上目標已經不在的捷徑	Desktop shortcuts whose target no longer exists
+桌面無效的捷徑	Broken desktop shortcuts
+標準（NTFS，適合會修改的檔案）	Standard (NTFS, for files that change)
+檔名樣式	File name pattern
+檔案	File
+檔案數	Files
+檔案會送進資源回收筒，可以還原；空間要等清空資源回收筒才會釋放。	Files go to the Recycle Bin and can be restored; the space is freed only when the Recycle Bin is emptied.
+檔案粉碎機	File shredder
+檔案粉碎機…	File shredder…
+檔案總管「最近使用的檔案」與工作列跳躍清單（不會刪到原本的檔案）	File Explorer "Recent files" and taskbar jump lists (original files are not deleted)
+檔案總管搜尋框打過的字、網址列輸入過的路徑	Words typed in File Explorer's search box and paths typed in its address bar
+檔案總管搜尋與網址列紀錄	File Explorer search and address history
+檔案總管的縮圖與圖示快取（使用中的會略過，下次重開機後再清較完整）	File Explorer thumbnail and icon cache (files in use are skipped; cleaning after a restart is more complete)
+檔案（勾選＝要刪除）	File (checked = delete)
+檢查 	Checking\s
+檢視	View
+檢視歷史記錄	View history
+檢視歷史記錄 ›	View history ›
+正在刪除檔案，按「停止」可以中斷	Deleting files; press "Stop" to interrupt
+正在掃描勾選的項目…　按「停止」可以中斷	Scanning the checked items…   press "Stop" to interrupt
+每天 09:00 檢查系統磁碟，剩不到 10% 時通知	Check the system drive daily at 09:00 and notify when less than 10% is free
+每天記一筆可用空間；綠色實心點是有清理的日子	Free space recorded daily; solid green dots are days with a cleanup
+每次清理的時間、檔案數與釋放的空間	Time, file count and space freed for each cleanup
+每組只留最新的	Keep newest in each group
+每組只留最舊的	Keep oldest in each group
+每週自動清理：	Clean automatically every week:
+比對 	Comparing\s
+永久粉碎這 {0} 個項目？\r\n\r\n粉碎後不會進資源回收筒，任何方式都救不回來。	Permanently shred these {0} items?\r\n\r\nShredded files don't go to the Recycle Bin and cannot be recovered by any means.
+沒有找到可清理的檔案	Nothing to clean was found
+沒有權限移除這個捷徑。	No permission to remove this shortcut.
+沒有還原點（或系統保護沒有開啟）	No restore points (or System Protection is off)
+深色	Dark
+淺色	Light
+清單裡的檔案，以及資料夾底下的所有檔案，掃描時都會跳過。	Files in the list, and all files under listed folders, are skipped when scanning.
+清掉 NuGet 全域套件後，每個專案下次建置都要重新下載套件，沒網路時無法建置。確定要勾選？	After clearing NuGet global packages, every project has to download its packages again on the next build and cannot build offline. Check it anyway?
+清理	Clean
+清理中…	Cleaning…
+清理備份	Cleanup backups
+清理備份…	Cleanup backups…
+清理元件存放區後，已安裝的更新就不能再解除安裝。確定要勾選？	After cleaning the component store, installed updates can no longer be uninstalled. Check it anyway?
+清理前把要刪的檔案備份成 zip（超過 200 MB 的檔案不備份）	Back up files to a zip before cleaning (files over 200 MB are not backed up)
+清理前自動備份的檔案；可以還原到原來的位置	Files backed up automatically before cleaning; they can be restored to their original locations
+清理方式、開發專案資料夾與排程	Cleaning, development project folders and scheduling
+清理時發生錯誤：	Error while cleaning:
+清理時送進資源回收筒（刪錯了救得回來，但空間要等清空回收筒才會釋放）	Send to the Recycle Bin when cleaning (mistakes can be undone, but space is freed only when the bin is emptied)
+清理歷史記錄	Cleanup history
+清空所有磁碟的資源回收筒（自動清理不會清）	Empty the Recycle Bin on all drives (automatic cleaning doesn't)
+清空目前複製的內容（Win+V 剪貼簿歷程記錄請在 Windows 設定裡清除）	Empty what is currently copied (clear the Win+V clipboard history in Windows Settings)
+清空資源回收筒	Emptying the Recycle Bin
+清除 Cookie 後，所有網站都會被登出，需要重新登入。\r\n瀏覽器開著時檔案會被鎖住而略過，請先關閉瀏覽器。確定要勾選？	After clearing cookies you are signed out of all websites.\r\nFiles are locked while the browser is open, so close it first. Check it anyway?
+清除記錄	Clear history
+減少	decreased
+瀏覽…	Browse…
+瀏覽器	Browsers
+瀏覽器 Cookie	Browser cookies
+瀏覽器歷史紀錄	Browser history
+瀏覽器預設只清快取；歷史紀錄與 Cookie 在「隱私」分類，要自己勾選。\r\n\r\n	By default only browser caches are cleaned; history and cookies are in the "Privacy" category and must be checked yourself.\r\n\r\n
+無法刪除	Failed
+無法啟動：	Cannot start:
+無法結束：	Cannot end:
+版本	Version
+版本：	Version:
+狀態	Status
+用 NTFS 壓縮讓檔案佔的空間變小，檔案照常開啟使用	Use NTFS compression to make files take less space; they open as usual
+用「{0}」壓縮\r\n{1}\r\n底下的所有檔案？	Compress all files under\r\n{1}\r\nwith "{0}"?
+用左邊勾選的項目清理，但不清空資源回收筒、不碰隱私類、不跑 DISM 與 Windows.old；以一般權限執行，結果記在歷史記錄。	Cleans the items checked on the left, but doesn't empty the Recycle Bin, touch privacy items, or run DISM / Windows.old; runs as a standard user and is recorded in the history.
+由 DISM 移除被取代的舊元件（大小執行完才知道，可能要好幾分鐘）	DISM removes superseded components (size known only afterwards; may take several minutes)
+略圖快取	Thumbnail cache
+當機時寫出的 .dmp	.dmp files written when something crashed
+登錄位置：	Registry location:
+登錄裡沒有寫解除安裝程式。	The registry has no uninstaller for it.
+登錄（所有使用者）	Registry (all users)
+登錄（所有使用者，32 位元）	Registry (all users, 32-bit)
+登錄（目前使用者）	Registry (current user)
+發行者	Publisher
+發行者網站	Publisher website
+發行者：	Publisher:
+目前使用者	Current user
+目標檔案已經不在本機磁碟上的捷徑	Shortcuts whose target is no longer on a local drive
+確定	OK
+確定要清除所有清理記錄？	Clear the whole cleanup history?
+確認	Confirm
+確認勾選	Confirm
+確認清理	Confirm cleanup
+確認粉碎	Confirm shredding
+磁碟	Drive
+磁碟分析	Disk analysis
+磁碟分析工具	Disk analysis tools
+磁碟根目錄、Windows、Program Files、使用者資料夾本身不能加入。	Drive roots, Windows, Program Files and the user folders themselves cannot be added.
+磁碟清理	Disk Sweeper
+磁碟清理\r\n\r\n掃描並刪除系統暫存、快取、錯誤報告等可安全移除的檔案。\r\n	Disk Sweeper\r\n\r\nScans for and deletes files that are safe to remove, such as system temp files, caches and error reports.\r\n
+磁碟空間不足	Low disk space
+磁碟空間趨勢	Disk space trend
+磁碟空間趨勢…	Disk space trend…
+移出清單	Remove from list
+移除	Remove
+移除失效項目	Remove broken entry
+移除失敗：	Remove failed:
+移除殘留項目	Remove leftover entry
+移除殘留項目…	Remove leftover entry…
+程式在系統匣裡繼續執行；右鍵圖示可以快速清理或結束。	The program keeps running in the system tray; right-click the icon to quick clean or exit.
+程式移除後留下、已經沒有任何程式在用的資料夾（推測，請確認後再刪）	Folders left behind by uninstalled programs that nothing uses anymore (a guess; check before deleting)
+程式開著時使用中的快取檔會略過	Cache files in use while the program is open are skipped
+空資料夾	Empty folders
+空資料夾…	Empty folders…
+空資料夾（勾選＝要刪除）	Empty folder (checked = delete)
+空間檢查：	Space check:
+範圍	Range
+粉碎	Shred
+粉碎 	Shredding\s
+系統	System
+系統保護設定…	System Protection settings…
+系統匣	System tray
+系統日誌檔案	System log files
+系統暫存	System temp files
+系統磁碟 	System drive\s
+系統磁碟空間不足：	Low space on the system drive:
+系統資料夾或使用者資料夾本身不能壓縮，請選它底下的子資料夾。	System folders and the user folders themselves cannot be compressed; choose a subfolder.
+系統資料夾或使用者資料夾本身不能粉碎：\r\n	System folders and the user folders themselves cannot be shredded:\r\n
+系統還原點	System restore points
+系統還原點…	System restore points…
+系統（	System (
+紀錄從今天開始累積	Records start accumulating today
+結束	Exit
+結束「{0}」（PID {1}）？\r\n\r\n沒存檔的資料會遺失；結束系統處理程序可能讓 Windows 不穩。	End "{0}" (PID {1})?\r\n\r\nUnsaved data will be lost; ending system processes can make Windows unstable.
+結束處理程序	End process
+編輯	Edit
+縮到系統匣後，右鍵圖示可以「快速清理」（範圍跟每週自動清理一樣），雙擊圖示開回視窗。	In the tray, right-click the icon for "Quick clean" (same scope as the weekly cleanup); double-click it to open the window again.
+總計  	Total\s\s
+背景服務	Background services
+背景服務…	Background services…
+自動	Automatic
+自動清理完成：刪除 {0:N0} 個檔案，釋放 {1}{2}	Automatic cleanup done: {0:N0} files deleted, {1} freed{2}
+自動清理：	Automatic cleanup:
+自動（延遲）	Automatic (delayed)
+自訂	Custom
+自訂檔案和資料夾	Custom files and folders
+自訂義檔案和資料夾	Custom files and folders
+自訂義檔案和資料夾…	Custom files and folders…
+自訂資料夾已更新	Custom folders updated
+舊版 Windows（Windows.old）	Previous Windows (Windows.old)
+舊的預讀取數據	Old Prefetch data
+複製資訊	Copy info
+複製路徑	Copy path
+要粉碎的檔案或資料夾	Files or folders to shred
+要解除安裝「{0}」嗎？\r\n\r\n會啟動它自己的解除安裝程式（可能會要求系統管理員權限），\r\n請依畫面指示完成。	Uninstall "{0}"?\r\n\r\nIts own uninstaller will start (it may ask for administrator rights);\r\nfollow its instructions.
+覆寫 1 次（快）	Overwrite once (fast)
+覆寫 3 次（較安全）	Overwrite 3 times (safer)
+覆寫 7 次（最慢）	Overwrite 7 times (slowest)
+覆寫後刪除，一般救援軟體救不回來（SSD 因為硬體特性無法保證）	Overwrite, then delete, so recovery tools can't get it back (not guaranteed on SSDs because of how they work)
+解除壓縮	Uncompress
+解除壓縮中…	Uncompressing…
+解除壓縮完成	Uncompressed
+解除安裝	Uninstall
+解除安裝 	Uninstalling\s
+解除安裝…	Uninstall…
+解除安裝應用程式	App uninstalled
+解除安裝：	Uninstall:
+計算中…	Measuring…
+計算大小	Measure size
+記憶體	Memory
+記憶體傾印檔案	Memory dump files
+設定	Settings
+設定 	Settings\s
+設定排程失敗：\r\n	Setting up the schedule failed:\r\n
+設定與記錄：%LOCALAPPDATA%\\DiskCleaner	Settings and records: %LOCALAPPDATA%\\DiskCleaner
+語言	Language
+語言設定重新啟動後生效。要現在重新啟動嗎？	The language applies after a restart. Restart now?
+說明	Help
+說明：\r\n• 壓縮後讀取時 CPU 會多做一點解壓縮，現在的電腦幾乎感覺不出來。\r\n	Notes:\r\n• After compression the CPU decompresses on read, which is barely noticeable on modern PCs.\r\n
+請先在左邊勾選要掃描的項目。	Check the items to scan on the left first.
+請等掃描或清理結束（或按「停止」）再修改設定。	Wait until scanning or cleaning finishes (or press "Stop") before changing settings.
+讀取中…	Loading…
+讀取失敗：	Loading failed:
+讀取服務中…	Loading services…
+讀取與刪除還原點需要系統管理員權限：請在主視窗用「檔案 → 以系統管理員身分重新啟動」。	Reading and deleting restore points needs administrator rights: use "File → Restart as administrator" in the main window.
+資料夾	Folder
+資料夾大小	Folder size
+資料夾（勾選＝含子資料夾）	Folder (checked = include subfolders)
+資料夾（勾選＝要刪除）	Folder (checked = delete)
+資料還不夠畫圖：程式每天會記一筆可用空間，過幾天再來看。\r\n（開這個程式、排程清理與每日空間檢查時都會記錄）	Not enough data for a chart yet: free space is recorded once a day, so check back in a few days.\r\n(It is recorded when this program opens, by scheduled cleanups and by the daily space check)
+資源佔用	Resource usage
+資源佔用…	Resource usage…
+資源回收筒	Recycle Bin
+資源回收筒（{0:N0} 個項目）	Recycle Bin ({0:N0} items)
+超過 30 天沒用到的 Prefetch（常用程式的留著，才不會拖慢開啟）	Prefetch files unused for more than 30 days (those of frequently used programs are kept so they still start quickly)
+跟隨系統	Follow system
+路徑	Path
+送進資源回收筒	send to the Recycle Bin
+送進資源回收筒…	Send to Recycle Bin…
+這些檔案與資料夾，掃描時會跳過	These files and folders are skipped when scanning
+這個位置是系統或使用者的重要資料夾，不能整個加入清理。	This is an important system or user folder and cannot be added as a whole.
+這個程式的解除安裝程式還在，請用「解除安裝」正常移除。	This program's uninstaller still exists; remove it with "Uninstall".
+這次多用了	This time it used an extra
+這次省下	This time it saved
+遠端桌面快取	Remote Desktop cache
+遠端桌面連線的點陣圖快取	Bitmap cache of Remote Desktop Connection
+選一個資料夾，按「計算大小」看目前佔多少空間。	Choose a folder and press "Measure size" to see how much space it takes.
+選左邊的資料夾，這裡會用面積顯示底下各項目的大小	Select a folder on the left; the area of each block here shows the size of what's inside
+選擇要忽略的檔案	Choose files to ignore
+選擇要忽略的資料夾	Choose a folder to ignore
+選擇要清理的資料夾	Choose a folder to clean
+選擇要粉碎的檔案	Choose files to shred
+選擇要粉碎的資料夾（整個資料夾都會刪掉）	Choose a folder to shred (the whole folder is deleted)
+選擇開發專案所在的資料夾（例如 D:\\Projects）	Choose the folder of your development projects (e.g. D:\\Projects)
+選項	Options
+選項…	Options…
+選項已儲存	Options saved
+還原失敗：	Restore failed:
+還原選取的備份	Restore selected backup
+還原點佔用 0	Restore points use 0
+還原點佔用 {0}（上限 {1}）	Restore points use {0} (limit {1})
+還原點可以把 Windows 退回之前的狀態，但很佔空間；保留最新一個通常就夠	Restore points roll Windows back to an earlier state but take a lot of space; keeping the newest one is usually enough
+還沒有掃描結果可以匯出。	There are no scan results to export yet.
+釋放	freed
+釋放空間	Space freed
+重新整理	Refresh
+重複檔案	Duplicate files
+重複檔案…	Duplicate files…
+重試	Retry
+錯誤報告檔案	Error report files
+開啟備份資料夾	Open backup folder
+開啟安裝資料夾	Open install folder
+開啟檔案位置	Open file location
+開啟發行者網站	Open publisher website
+開啟磁碟清理	Open Disk Sweeper
+開啟資料夾	Open folder
+開始掃描	Start scan
+開始選單無效的捷徑	Broken Start menu shortcuts
+開機	Boot
+開機啟動項目	Startup programs
+開機啟動項目…	Startup programs…
+開發專案資料夾	Development project folders
+開發者	Developer
+關於	About
+關閉視窗時縮到系統匣（從系統匣選單「結束」才真的關閉）	Closing the window minimizes to the tray (use "Exit" in the tray menu to quit)
+隱私	Privacy
+需要系統管理員權限才能移除這個項目。	Administrator rights are needed to remove this entry.
+非微軟的背景服務；不常用的可以改成「手動」，需要時 Windows 才啟動它	Non-Microsoft background services; set rarely used ones to "Manual" so Windows starts them only when needed
+預設選取	Default selection
+類型	Type
+顯示 Microsoft 服務	Show Microsoft services
+顯示 {0} 個服務（執行中 {1} 個）{2}	Showing {0} services ({1} running){2}
+顯示卡著色器快取	GPU shader cache
+顯示名稱	Display name
+顯示系統元件與更新	Show system components and updates
+點擊「掃瞄」掃瞄您的系統垃圾檔案	Click "Scan" to look for junk files on your system
+（只列出最大的 {0} 組）	(only the {0} largest groups are listed)
+（可能要好幾分鐘）	(may take several minutes)
+（含系統元件）	(including system components)
+（推測）	(guessed)
+（損毀）	(damaged)
+（有些沒有權限或使用中，沒有移動）	(some were in use or not permitted and were not moved)
+（系統管理員）	 (Administrator)
+（資料夾大小要重新分析才會更新）	(analyze again to update folder sizes)
+（這一層的檔案）	(files in this folder)
+（還沒設定：設定 → 選項 → 開發專案資料夾）	(not set yet: Settings → Options → Development project folders)
+（非執行程式的動作）	(not a program action)
+）	)
+，{0:N0} 個太大或讀不到沒備份	, {0:N0} too large or unreadable were not backed up
+，{0:N0} 個失敗（使用中或沒有權限）	, {0:N0} failed (in use or not permitted)
+，{0:N0} 個沒有移動（使用中或沒有權限）	, {0:N0} not moved (in use or not permitted)
+，建議掃瞄清理，或用「工具 → 大檔案分析」找出佔空間的檔案	; scan and clean, or use "Tools → Large files" to find what takes space
+，部分資料夾沒權限讀取，實際更大	; some folders could not be read, so it is actually larger
+，點這裡開啟磁碟清理	; click here to open Disk Sweeper
+：安裝程式已結束，清單已重新整理	: the installer finished and the list was refreshed
+：等待安裝程式結束…	: waiting for the installer to finish…
+；{0:N0} 個使用中已略過	; {0:N0} in use were skipped
+；{0:N0} 個使用中或沒有權限，已略過	; {0:N0} in use or not permitted were skipped
+；{0:N0} 個資料夾沒有權限讀取	; {0:N0} folders could not be read
+；{0} 個指向的程式已不存在（紅字）	; {0} point to programs that no longer exist (red)
+；已備份 {0:N0} 個檔案（{1}）{2}	; {0:N0} files backed up ({1}){2}
+使用者暫存	User temp files
+本機磁碟	Local disk
+抽取式磁碟	Removable disk
+網路磁碟	Network drive
+{0} 可用／共 {1}	{0} free of {1}
+{0}（{1}）\r\n已用 {2}／共 {3}\r\n點一下分析這個磁碟的大檔案	{0} ({1})\r\nUsed {2} of {3}\r\nClick to analyze the large files on this drive
