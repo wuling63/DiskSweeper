@@ -198,3 +198,7 @@ DiskCleaner\
 ├── Dialogs.cs           # 對話框外框（漸層標題列＋白卡片）、忽略清單、自訂資料夾、歷史記錄、選項
 └── Settings.cs          # 設定與歷史（%LOCALAPPDATA%\DiskCleaner）
 ```
+
+## 授權
+
+MIT License，見 [LICENSE](LICENSE)。本程式會刪除檔案，請先看清楚掃描結果再清理；作者不對資料遺失負責。
