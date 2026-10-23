@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -139,7 +139,10 @@ namespace DiskCleaner
         }
     }
 
-    /// <summary>程式圖示：綠色圓底上一把白色掃帚狀的斜線，畫出來的，不需要 .ico 檔。</summary>
+    /// <summary>
+    /// 程式圖示：內嵌的 app.ico（跟執行檔圖示同一個檔，16～256 都有），視窗與系統匣共用。
+    /// 讀不到時退回系統預設的應用程式圖示。
+    /// </summary>
     internal static class AppIcon
     {
         private static Icon _icon;
@@ -147,29 +150,15 @@ namespace DiskCleaner
         public static Icon Get()
         {
             if (_icon != null) return _icon;
-
-            using (var bmp = new Bitmap(32, 32))
+            try
             {
-                using (var g = Graphics.FromImage(bmp))
+                using (var stream = typeof(AppIcon).Assembly.GetManifestResourceStream("DiskCleaner.app.ico"))
                 {
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    using (var back = new LinearGradientBrush(new Rectangle(0, 0, 32, 32),
-                        Color.FromArgb(124, 196, 44), Color.FromArgb(58, 118, 22), 45f))
-                    {
-                        g.FillEllipse(back, 1, 1, 30, 30);
-                    }
-                    using (var pen = new Pen(Color.White, 3f) { StartCap = LineCap.Round, EndCap = LineCap.Round })
-                    {
-                        g.DrawLine(pen, 21, 6, 13, 19);
-                    }
-                    using (var brush = new SolidBrush(Color.White))
-                    {
-                        g.FillPolygon(brush, new[] { new Point(8, 18), new Point(17, 21), new Point(13, 27), new Point(6, 25) });
-                    }
+                    if (stream != null) _icon = new Icon(stream);
                 }
-                _icon = Icon.FromHandle(bmp.GetHicon());
             }
-            return _icon;
+            catch (Exception) { }
+            return _icon ?? (_icon = SystemIcons.Application);
         }
     }
 }

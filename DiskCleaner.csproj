@@ -9,6 +9,8 @@
     <AssemblyName>DiskSweeper</AssemblyName>
     <RootNamespace>DiskCleaner</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- 檔案總管、工作列看到的執行檔圖示（16～256 各一張）。 -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
     <!-- 64 位元系統上要用 64 位元跑：32 位元程式看到的 System32 會被轉向，路徑會判斷錯。 -->
     <Prefer32Bit>false</Prefer32Bit>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
@@ -31,6 +33,8 @@
   <ItemGroup>
     <!-- 英文介面的字典（每行「中文、Tab、英文」），見 Lang.cs。 -->
     <EmbeddedResource Include="en.txt" LogicalName="DiskCleaner.en.txt" />
+    <!-- 視窗與系統匣也用同一個圖示。 -->
+    <EmbeddedResource Include="app.ico" LogicalName="DiskCleaner.app.ico" />
   </ItemGroup>
 
 </Project>

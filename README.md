@@ -166,6 +166,7 @@ Microsoft Store 的 App 不在這份清單裡。
 DiskCleaner\
 ├── DiskCleaner.csproj   # net48 WinExe
 ├── app.manifest         # 一般權限、Per-Monitor V2 DPI
+├── app.ico              # 程式圖示（16～256，執行檔、視窗、系統匣共用）
 ├── Program.cs           # 進入點、/auto 與 /lowspace 排程模式（共用 SafeClean）、程式圖示
 ├── MainForm.cs          # 主視窗：選單、橫幅、工作清單（三態勾選）、檔案清單、掃描與清理流程
 ├── HeaderPanel.cs       # 橫幅：漸層、跳動計數、今天／總計膠囊、系統磁碟卡片、忙碌流光
