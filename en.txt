@@ -590,3 +590,129 @@ pkgs 裡下載的壓縮檔（等同 conda clean --tarballs），不動已解開�
 網路磁碟	Network drive
 {0} 可用／共 {1}	{0} free of {1}
 {0}（{1}）\r\n已用 {2}／共 {3}\r\n點一下分析這個磁碟的大檔案	{0} ({1})\r\nUsed {2} of {3}\r\nClick to analyze the large files on this drive
+Docker Desktop 正在執行，請先從系統匣結束 Docker Desktop 再壓縮。	Docker Desktop is running; quit it from the system tray before compacting.
+Linux 裡刪掉的檔案不會讓虛擬磁碟變小；壓縮可以把空出來的空間還給 Windows	Deleting files inside Linux doesn't shrink the virtual disk; compacting gives the freed space back to Windows
+WSL／Docker 虛擬磁碟	WSL / Docker virtual disks
+WSL／Docker 虛擬磁碟…	WSL / Docker virtual disks…
+winapp2.ini：CCleaner／BleachBit 共用的社群規則（CC-BY-SA 4.0）	winapp2.ini: community rules shared by CCleaner / BleachBit (CC-BY-SA 4.0)
+{0:N0} 個項目，{1}	{0:N0} items, {1}
+{0} 個可能的殘留資料夾，共 {1}（推測，請確認後再刪）	{0} possible leftover folders, {1} in total (a guess; check before deleting)
+{0} 個啟用中{1}	{0} enabled{1}
+{0} 個，共 {1}；壓縮可以把 Linux 裡刪掉的空間還給 Windows	{0}, {1} in total; compacting gives space freed inside Linux back to Windows
+{0} 剩 {1}	{0} has {1} left
+{0} 剩 {1}（{2:0}%）	{0} has {1} left ({2:0}%)
+{0} 項檢查：{1} 項需要處理、{2} 項注意	{0} checks: {1} need action, {2} need attention
+{0} 顆有警告，請盡快備份資料	{0} have warnings; back up your data soon
+{0} 顆磁碟都健康	All {0} disks are healthy
+{0} 顆磁碟，{1}{2}	{0} disks, {1}{2}
+{0}\t{1}\t{2}（{3}）	{0}\t{1}\t{2} ({3})
+{0}，最多的是 {1}	{0}; the largest are {1}
+{0}，由 Windows 自動管理；空間很緊時可在「系統 → 進階系統設定 → 效能」調小，不建議關閉	{0}, managed by Windows; if space is tight you can shrink it in "System → Advanced system settings → Performance" (turning it off is not recommended)
+{0}；不用休眠的話可以關掉	{0}; you can turn it off if you don't use hibernation
+　│　壓縮需要系統管理員權限（檔案 → 以系統管理員身分重新啟動）	   │   Compacting needs administrator rights (File → Restart as administrator)
+　│　溫度、壽命、錯誤次數需要系統管理員權限才讀得到	   │   Temperature, wear and error counts need administrator rights
+一次看完磁碟空間、垃圾檔案、開機項目、磁碟健康等狀況，每項都可以直接處理	Disk space, junk files, startup programs, disk health and more at a glance; fix each item directly
+下載中…	Downloading…
+下載失敗：	Download failed:
+下載的內容不是 winapp2.ini	The downloaded content is not winapp2.ini
+不良	Unhealthy
+不認得的項目代號：	Unknown item IDs:
+介面	Bus
+代號	Drives
+代號\t預設\t名稱（分類）	ID\tDefault\tName (category)
+休眠檔（hiberfil.sys）	Hibernation file (hiberfil.sys)
+佔用 {0}（上限 {1}）	{0} used (limit {1})
+健康	Healthy
+健康狀態	Health
+全部健康	all healthy
+其他	Other
+其他磁碟空間	Other drives
+其他磁碟空間都夠	Other drives have enough space
+分頁檔（pagefile.sys）	Page file (pagefile.sys)
+列出所有項目代號	List all item IDs
+匯入失敗：	Import failed:
+可清理的垃圾檔案	Junk files to clean
+合計 {0:N0} 個項目，{1}	Total {0:N0} items, {1}
+命令列模式	command-line mode
+在 {0} 裡執行 fstrim…	Running fstrim in {0}…
+在清單中勾選	Select in list
+壓縮 {0} 個虛擬磁碟（共 {1}）？\r\n\r\n會先關閉所有 WSL 發行版（wsl --shutdown），正在 Linux 裡執行的程式會被中斷。\r\n大的磁碟可能要好幾分鐘。	Compact {0} virtual disks ({1})?\r\n\r\nAll WSL distributions will be shut down first (wsl --shutdown); programs running in Linux will be interrupted.\r\nLarge disks can take several minutes.
+壓縮 {0}（{1}）…	Compacting {0} ({1})…
+壓縮前先在 Linux 裡執行 fstrim（建議，壓得比較多）	Run fstrim inside Linux first (recommended, frees more)
+壓縮勾選的磁碟	Compact checked disks
+壓縮完成：{0} → {1}，省下 {2}	Compacted: {0} → {1}, saved {2}
+容量	Capacity
+已備份 {0:N0} 個檔案：{1}	Backed up {0:N0} files: {1}
+已匯入：{0}（{1:yyyy/MM/dd}）\r\n檔案裡共 {2:N0} 條規則\r\n收進清單 {3:N0} 條（偵測到已安裝的快取類程式）\r\n不像快取類而不收 {4:N0} 條、沒安裝 {5:N0} 條	Imported: {0} ({1:yyyy/MM/dd})\r\n{2:N0} rules in the file\r\n{3:N0} added to the list (cache-type rules for installed programs)\r\n{4:N0} skipped as not cache-like, {5:N0} not installed
+已完成 {0} 項檢查…	{0} checks done…
+已清理 {0:N0} 個項目，釋放 {1}；{2:N0} 個使用中或沒有權限，已略過	Cleaned {0:N0} items, freed {1}; {2:N0} in use or not permitted were skipped
+已用壽命	Wear
+很乾淨	Clean
+從 GitHub 下載最新版	Download latest from GitHub
+從檔案匯入…	Import from file…
+找到 {0} 個虛擬磁碟，共 {1}{2}	Found {0} virtual disks, {1} in total{2}
+把結果另存成文字檔	Save the output to a text file
+掃描並列出可清理的大小（不刪除）	Scan and list what can be cleaned (deletes nothing)
+掃描可清理的檔案…	Scanning for files to clean…
+掃瞄清理	Scan & clean
+提示	Info
+是空的	Empty
+會關閉休眠功能並刪除休眠檔：之後無法休眠，Windows 的「快速啟動」也會一起關閉（開機可能慢幾秒）。\r\n想恢復時用系統管理員執行 powercfg /hibernate on。確定要勾選？	This turns off hibernation and deletes the hibernation file: you can no longer hibernate, and Windows "Fast startup" is turned off too (booting may take a few seconds longer).\r\nTo restore it, run powercfg /hibernate on as administrator. Check it anyway?
+未知	Unknown
+查看	View
+檢查 WSL／Docker 虛擬磁碟…	Checking WSL / Docker virtual disks…
+檢查中…	Checking…
+檢查休眠檔與分頁檔…	Checking hibernation and page files…
+檢查失敗	Check failed
+檢查安裝殘留（要十幾秒）…	Checking install leftovers (takes 10–20 seconds)…
+檢查完成	Check complete
+檢查磁碟健康…	Checking disk health…
+檢查磁碟空間…	Checking disk space…
+檢查開機啟動項目…	Checking startup programs…
+每顆實體磁碟的健康狀態、溫度、SSD 已用壽命與錯誤次數（SMART）	Health, temperature, SSD wear and error counts of each physical disk (SMART)
+沒有	None
+沒有 /items 時用「排程自動清理」的範圍。在 cmd 請用 start /wait DiskSweeper.exe …，PowerShell 請接 | Out-Host。	Without /items the scope of the scheduled cleanup is used. In cmd use start /wait DiskSweeper.exe …; in PowerShell pipe to | Out-Host.
+沒有休眠檔（休眠已關閉）	No hibernation file (hibernation is off)
+沒有找到	None found
+沒有找到 WSL 或 Docker 的虛擬磁碟	No WSL or Docker virtual disks found
+注意	Attention
+清理前先備份成 zip	Back up to a zip before cleaning
+清理；沒有 /yes 只預演	Clean; without /yes it's only a dry run
+溫度	Temp.
+為了安全只收快取、日誌、暫存、當機傾印、著色器類的規則，而且只收偵測得到的程式；歷史紀錄、Cookie、自動填入、密碼、設定類一律不收，也不執行刪除登錄（RegKey）。收進來的項目在「社群規則」分類，預設不勾，排程與快速清理不碰。	For safety only cache, log, temp, crash dump and shader rules for detected programs are imported; history, cookies, autofill, passwords and settings are never imported, and registry deletions (RegKey) are not performed. Imported items are in the "Community rules" category, unchecked by default, and never touched by scheduled or quick cleanups.
+無法寫入報告檔：	Cannot write the report file:
+狀況很好	Looking good
+目前沒有匯入社群規則。	No community rules imported yet.
+磁碟健康	Disk health
+磁碟健康（SMART）…	Disk health (SMART)…
+社群清理規則	Community cleaning rules
+社群清理規則已更新	Community cleaning rules updated
+社群清理規則（winapp2.ini）…	Community cleaning rules (winapp2.ini)…
+社群規則	Community rules
+社群規則（winapp2.ini）：	Community rule (winapp2.ini):
+管理啟動項目	Manage startup
+管理還原點	Manage restore points
+系統磁碟空間	System drive space
+良好	Good
+虛擬	Virtual
+警告	Warning
+讀寫錯誤	R/W errors
+送進資源回收筒而不是直接刪除	Send to the Recycle Bin instead of deleting
+選擇 winapp2.ini	Choose winapp2.ini
+還可以，有幾項可以處理	OK, a few things can be improved
+還在使用中，略過	still in use, skipped
+重新檢查	Check again
+錯誤：	Error:
+開機時數	Power-on hours
+關閉 WSL（wsl --shutdown）…	Shutting down WSL (wsl --shutdown)…
+關閉休眠並刪除休眠檔（約為記憶體的 40%～75%）；之後不能休眠，「快速啟動」也會一起關閉	Turn off hibernation and delete the hibernation file (about 40–75% of RAM); you can no longer hibernate and "Fast startup" is turned off too
+電腦健康檢查	PC health check
+電腦健康檢查…	PC health check…
+需要整理	Needs attention
+需要系統管理員權限才讀得到	Needs administrator rights to read
+需要處理	Action needed
+預演模式：沒有刪除任何東西。確定要清理請加 /yes。	Dry run: nothing was deleted. Add /yes to really clean.
+（用 /list 看所有代號）	 (use /list to see all IDs)
+，{0} 個指向不存在的程式	, {0} point to programs that no longer exist
+－	－
+：請盡快備份重要資料	: back up important data soon

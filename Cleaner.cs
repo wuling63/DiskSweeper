@@ -77,6 +77,12 @@ namespace DiskCleaner
         public string Target;                  // 資料夾、命令列或登錄機碼
         public string Arguments;
 
+        /// <summary>指令類項目：用這個檔案的大小當成可釋放的空間（例如 hiberfil.sys）；檔案不在就表示沒有東西可清。</summary>
+        public string SizeFile;
+
+        /// <summary>社群規則（winapp2.ini）匯入的項目：預設不勾，排程與快速清理不碰。</summary>
+        public bool Community;
+
         // ── 掃描結果 ──
         public List<FileEntry> Found = new List<FileEntry>();
         public long FoundBytes;
@@ -86,7 +92,7 @@ namespace DiskCleaner
         /// <summary>自動（排程）清理會跑的項目：只清檔案類，不清空回收筒、不碰隱私、不跑系統工具。</summary>
         public bool SafeForAuto
         {
-            get { return !Privacy && (Kind == ItemKind.Files || Kind == ItemKind.BrokenShortcuts); }
+            get { return !Privacy && !Community && (Kind == ItemKind.Files || Kind == ItemKind.BrokenShortcuts); }
         }
 
         /// <summary>畫面上的「項目數」：回收筒算裡面的項目，其他算列出的筆數。</summary>
@@ -249,7 +255,19 @@ namespace DiskCleaner
 
         private static void ScanCommand(CleanItem item)
         {
-            item.Found.Add(new FileEntry { Path = item.Description, Size = 0 });
+            if (string.IsNullOrEmpty(item.SizeFile))
+            {
+                item.Found.Add(new FileEntry { Path = item.Description, Size = 0 });
+                return;
+            }
+
+            // hiberfil.sys 這類系統檔不能開來讀，但取大小（目錄資訊）可以。
+            var info = new FileInfo(item.SizeFile);
+            if (!info.Exists) return;
+            long size = 0;
+            try { size = info.Length; } catch (Exception) { }
+            item.FoundBytes = size;
+            item.Found.Add(new FileEntry { Path = item.SizeFile, Size = size });
         }
 
         private static void ScanRegistry(CleanItem item)
@@ -343,31 +361,41 @@ namespace DiskCleaner
             return false;
         }
 
-        /// <summary>把 Root 中的「*」展開成實際存在的資料夾。</summary>
+        private static readonly char[] Wildcards = { '*', '?' };
+
+        /// <summary>
+        /// 把 Root 裡含萬用字元的資料夾層展開成實際存在的資料夾。任何一層都可以有，
+        /// 例如 User Data\*\Cache（每個設定檔）、Packages\Foo*\LocalState（winapp2 常見寫法）。
+        /// 不跟進 junction／符號連結。
+        /// </summary>
         public static IEnumerable<string> ExpandRoot(string root)
         {
-            // 結尾的「\*」也是「每個子資料夾」，補一個斜線讓下面同一套處理。
-            if (root.EndsWith("\\*", StringComparison.Ordinal)) root += "\\";
-
-            int star = root.IndexOf("\\*\\", StringComparison.Ordinal);
-            if (star < 0)
+            root = (root ?? string.Empty).TrimEnd('\\');
+            if (root.IndexOfAny(Wildcards) < 0)
             {
-                root = root.TrimEnd('\\');
                 if (Directory.Exists(root)) yield return root;
                 yield break;
             }
 
-            string parent = root.Substring(0, star);
-            string rest = root.Substring(star + 3);
+            string[] parts = root.Split('\\');
+            int at = Array.FindIndex(parts, p => p.IndexOfAny(Wildcards) >= 0);
+            if (at <= 0) yield break;   // 磁碟代號那層不能是萬用字元
+
+            string parent = string.Join("\\", parts, 0, at);
+            if (parent.Length == 2 && parent[1] == ':') parent += "\\";
+            string rest = string.Join("\\", parts, at + 1, parts.Length - at - 1);
             if (!Directory.Exists(parent)) yield break;
 
             string[] subs;
-            try { subs = Directory.GetDirectories(parent); }
+            try { subs = Directory.GetDirectories(parent, parts[at]); }
             catch (Exception) { yield break; }
 
             foreach (string sub in subs)
             {
-                foreach (string expanded in ExpandRoot(sub + "\\" + rest)) yield return expanded;
+                try { if ((File.GetAttributes(sub) & FileAttributes.ReparsePoint) != 0) continue; }
+                catch (Exception) { continue; }
+                string next = rest.Length == 0 ? sub : sub + "\\" + rest;
+                foreach (string expanded in ExpandRoot(next)) yield return expanded;
             }
         }
 

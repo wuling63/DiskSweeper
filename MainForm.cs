@@ -207,14 +207,18 @@ namespace DiskCleaner
             disk.DropDownItems.Add(Lang.T("安裝殘留…"), null, delegate { new LeftoverForm().Show(this); });
             disk.DropDownItems.Add(Lang.T("磁碟空間趨勢…"), null, delegate { new TrendForm(_settings.History).Show(this); });
             disk.DropDownItems.Add(Lang.T("壓縮資料夾…"), null, delegate { new CompressForm().Show(this); });
+            disk.DropDownItems.Add(Lang.T("WSL／Docker 虛擬磁碟…"), null, delegate { new VhdxForm().Show(this); });
             var system = new ToolStripMenuItem(Lang.T("系統"));
             system.DropDownItems.Add(Lang.T("已安裝的程式…"), null, delegate { new InstalledAppsForm().Show(this); });
             system.DropDownItems.Add(Lang.T("開機啟動項目…"), null, delegate { new StartupForm().Show(this); });
             system.DropDownItems.Add(Lang.T("背景服務…"), null, delegate { new ServicesForm().Show(this); });
             system.DropDownItems.Add(Lang.T("資源佔用…"), null, delegate { new ProcessForm().Show(this); });
+            system.DropDownItems.Add(Lang.T("磁碟健康（SMART）…"), null, delegate { new DiskHealthForm().Show(this); });
             system.DropDownItems.Add(Lang.T("系統還原點…"), null, delegate { new RestorePointsForm().Show(this); });
             var security = new ToolStripMenuItem(Lang.T("安全"));
             security.DropDownItems.Add(Lang.T("檔案粉碎機…"), null, delegate { new ShredderForm().Show(this); });
+            tools.DropDownItems.Add(Lang.T("電腦健康檢查…"), null, delegate { ShowHealth(); });
+            tools.DropDownItems.Add(new ToolStripSeparator());
             tools.DropDownItems.Add(disk);
             tools.DropDownItems.Add(system);
             tools.DropDownItems.Add(security);
@@ -225,6 +229,7 @@ namespace DiskCleaner
             options.DropDownItems.Add(Lang.T("選項…"), null, delegate { ShowOptions(); });
             options.DropDownItems.Add(Lang.T("忽略清單…"), null, delegate { ShowIgnoreList(); });
             options.DropDownItems.Add(Lang.T("自訂義檔案和資料夾…"), null, delegate { ShowCustomFolders(); });
+            options.DropDownItems.Add(Lang.T("社群清理規則（winapp2.ini）…"), null, delegate { ShowWinapp2(); });
 
             var help = new ToolStripMenuItem(Lang.T("說明"));
             help.DropDownItems.Add(Lang.T("關於"), null, delegate
@@ -572,6 +577,7 @@ namespace DiskCleaner
             SaveChecks();
             _items = Cleaner.BuiltIn(_settings.DevRoots);
             if (_settings.CustomFolders.Count > 0) _items.Add(Cleaner.Custom(_settings.CustomFolders));
+            _items.AddRange(Winapp2.LoadInstalled().Items);
 
             _tree.BeginUpdate();
             _tree.Nodes.Clear();
@@ -582,6 +588,7 @@ namespace DiskCleaner
                          : group.Key == Cleaner.CatApps ? Cleaner.IconApp
                          : group.Key == Cleaner.CatDev ? Cleaner.IconDoc
                          : group.Key == Cleaner.CatPrivacy ? Cleaner.IconLock
+                         : group.Key == Cleaner.CatCommunity ? Cleaner.IconWorld
                          : Cleaner.IconFolder;
                 var parent = new TreeNode(Lang.T(group.Key)) { Tag = group.Key, ImageIndex = icon, SelectedImageIndex = icon };
                 parent.NodeFont = new Font(UiFont, FontStyle.Bold);
@@ -1074,6 +1081,51 @@ namespace DiskCleaner
                 _settings.Save();
             }
             _status.Text = Lang.T("忽略清單已更新，下次掃描生效");
+        }
+
+        private void ShowWinapp2()
+        {
+            if (Busy()) return;
+            using (var dlg = new Winapp2Dialog())
+            {
+                dlg.ShowDialog(this);
+                if (!dlg.Changed) return;
+            }
+            LoadItems();
+            if (_phase == Phase.Scanned) SetPhase(Phase.Idle);
+            _status.Text = Lang.T("社群清理規則已更新");
+        }
+
+        private void ShowHealth()
+        {
+            SaveChecks();
+            new HealthForm(_settings, HandleHealthAction).Show(this);
+        }
+
+        /// <summary>健康檢查各項的「處理」按鈕。</summary>
+        private void HandleHealthAction(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            if (key.StartsWith("analyze:", StringComparison.Ordinal)) { ShowAnalyzer(0, key.Substring(8)); return; }
+            if (key.StartsWith("select:", StringComparison.Ordinal))
+            {
+                var node = Leaves().FirstOrDefault(n => ((CleanItem)n.Tag).Id == key.Substring(7));
+                if (node != null) { node.EnsureVisible(); _tree.SelectedNode = node; }
+                Activate();
+                return;
+            }
+            switch (key)
+            {
+                case "scan":
+                    Activate();
+                    if (_phase == Phase.Idle) Scan();
+                    break;
+                case "startup": new StartupForm().Show(this); break;
+                case "smart": new DiskHealthForm().Show(this); break;
+                case "restore": new RestorePointsForm().Show(this); break;
+                case "vhdx": new VhdxForm().Show(this); break;
+                case "leftovers": new LeftoverForm().Show(this); break;
+            }
         }
 
         private void ShowCustomFolders()

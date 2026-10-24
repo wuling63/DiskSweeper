@@ -111,6 +111,7 @@ namespace DiskCleaner
                 case Cleaner.CatApps: return Color.FromArgb(139, 92, 246);
                 case Cleaner.CatDev: return Accent;
                 case Cleaner.CatPrivacy: return Color.FromArgb(244, 63, 94);
+                case Cleaner.CatCommunity: return Color.FromArgb(20, 184, 166);
                 default: return Color.FromArgb(100, 116, 139);
             }
         }
@@ -236,7 +237,7 @@ namespace DiskCleaner
             }
 
             // 清單、樹、捲軸用系統的深色樣式（Windows 10 1809 起支援）。
-            if ((c is ListView || c is TreeView || c is ListBox || c is TextBox) && c.IsHandleCreated)
+            if ((c is ListView || c is TreeView || c is ListBox || c is TextBox || c is HealthList) && c.IsHandleCreated)
             {
                 SetWindowTheme(c.Handle, Dark ? "DarkMode_Explorer" : "Explorer", null);
                 if (c is ListView)

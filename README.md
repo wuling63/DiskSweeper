@@ -1,5 +1,7 @@
 # 磁碟清理
 
+[![build](https://github.com/wuling63/DiskSweeper/actions/workflows/build.yml/badge.svg)](https://github.com/wuling63/DiskSweeper/actions/workflows/build.yml)
+
 C# / .NET Framework 4.8 WinForms 桌面程式，掃描並刪除系統暫存、快取、錯誤報告等可以安全移除的檔案。
 版面仿一般的磁碟清理工具：上方綠色橫幅顯示今天／總計清理量與掃描結果，左邊是可勾選的工作清單，右邊是檔案明細。
 
@@ -44,7 +46,9 @@ bin\Release\net48\DiskSweeper.exe
 
 | 子選單 | 工具 | 說明 |
 |------|------|------|
+| （最上面） | 電腦健康檢查 | 一次檢查系統磁碟與其他磁碟空間、可清理的垃圾、資源回收筒、開機項目、磁碟健康、休眠檔、分頁檔、還原點、WSL／Docker 虛擬磁碟、安裝殘留，給 0～100 分（注意扣 6、需要處理扣 15），每項旁邊有按鈕直接開對應的工具。只讀，不會自己動任何東西 |
 | 磁碟分析 | 大檔案分析／重複檔案／空資料夾 | 見上表 |
+| | WSL／Docker 虛擬磁碟 | 找出 WSL 發行版（登錄 `Lxss`）與 Docker Desktop 的 `.vhdx`。Linux 裡刪檔不會讓 vhdx 變小，這裡先（可選）在 Linux 裡跑 `fstrim`、`wsl --shutdown`，再用 `diskpart` 的 `compact vdisk` 壓縮（Windows 家用版沒有 `Optimize-VHD` 也能用）。需要系統管理員；Docker Desktop 還開著時不給壓 |
 | | 安裝殘留 | Program Files、ProgramData、AppData 第一層裡，已安裝程式（名稱、發行者、安裝路徑、名稱第一個字）、服務、啟動項目、開始選單捷徑、執行中程式都對不上，而且 180 天沒變動、大於 1 MB 的資料夾。名稱像快取／建置／更新程式的跳過。這是推測：預設不勾、刪除送資源回收筒 |
 | | 磁碟空間趨勢 | 每天記一筆各固定磁碟的可用空間（開程式、排程清理、每日空間檢查時記，保留一年，存在 `space.json`），畫成折線圖，有清理的日子標實心點 |
 | | 壓縮資料夾 | 用 `compact.exe` 做 NTFS 壓縮（標準／XPRESS 8K／XPRESS 16K／LZX），顯示壓縮前後的磁碟佔用；系統與使用者資料夾本身不給壓 |
@@ -52,6 +56,7 @@ bin\Release\net48\DiskSweeper.exe
 | | 開機啟動項目 | 登錄 Run（目前使用者／所有使用者 64、32 位元）、啟動資料夾、登入或開機時執行的排程工作（`\Microsoft` 底下的不列）。啟用／停用寫 `StartupApproved`，跟工作管理員同一套，不刪項目；指向程式已不存在的可以移除（登錄先備份成 .reg） |
 | | 背景服務 | 預設只列非 Microsoft 的服務；系統管理員可以改啟動類型（`sc config`）、啟動／停止，每次都要確認，Microsoft 服務另外警告 |
 | | 資源佔用 | 每 2 秒取樣，依 CPU 或記憶體（私有工作集）排序，可以結束處理程序 |
+| | 磁碟健康（SMART） | 每顆實體磁碟的型號、類型、介面、容量、對應的磁碟代號與健康狀態（`MSFT_PhysicalDisk`）；溫度、SSD 已用壽命、開機時數、讀寫錯誤（`MSFT_StorageReliabilityCounter`）要系統管理員才讀得到 |
 | | 系統還原點 | 列出還原點（WMI `SystemRestore`）與陰影複製佔用（`Win32_ShadowStorage`），可「只保留最新一個」或刪除選取（`SRRemoveRestorePoint`）；需要系統管理員 |
 | 安全 | 檔案粉碎機 | 亂數覆寫 1／3／7 次、改亂碼檔名再刪；可拖放。SSD 因為損耗平均與 TRIM，覆寫不保證寫到原本的位置 |
 | | 清理備份 | 列出清理前備份的 zip，可還原到原位（不覆蓋已存在的檔案）或刪除 |
@@ -124,6 +129,7 @@ Microsoft Store 的 App 不在這份清單裡。
 | | Windows 安裝程式暫存檔 🛡 | `%WINDIR%\Installer` 最上層的 .tmp | ✔ |
 | | 舊版 Windows 🛡⚠ | `Windows.old`（takeown＋icacls 後整個刪，刪了不能退回舊版） | |
 | | Windows 元件存放區 🛡⚠ | `DISM /Online /Cleanup-Image /StartComponentCleanup` | |
+| | 休眠檔 🛡⚠ | `hiberfil.sys`（大小約記憶體的四成）；清理＝`powercfg /hibernate off`，同時關掉休眠與快速啟動 | |
 | 瀏覽器 | Internet Explorer | `INetCache` | ✔ |
 | | Edge／Chrome／Brave 快取 | 各設定檔的 `Cache`、`Code Cache`、`GPUCache` | ✔ |
 | | Firefox 快取 | 各設定檔的 `cache2` | ✔ |
@@ -148,6 +154,36 @@ Microsoft Store 的 App 不在這份清單裡。
 | | 最近使用的檔案 ⚠ | `Recent` 與跳躍清單（原檔不受影響） | |
 | | 執行紀錄（Win+R）⚠ | `HKCU\…\Explorer\RunMRU` | |
 
+分頁檔（`pagefile.sys`）不列成清理項目，只在健康檢查裡顯示大小與設定位置：關掉分頁檔可能讓程式在記憶體不足時直接當掉。
+
+## 社群清理規則（winapp2.ini）
+
+「設定 → 社群清理規則」可以從 GitHub 下載或從檔案匯入 [winapp2.ini](https://github.com/MoscaDotTo/Winapp2)
+（CCleaner／BleachBit 共用的社群規則，數千個程式的快取位置），匯入的項目放在「社群規則」分類。為了安全只收一小部分：
+
+- 只收名稱是快取、日誌、暫存、當機傾印、著色器、縮圖、更新／安裝檔類的規則；名稱帶歷史、Cookie、密碼、登入、設定、
+  書籤、存檔、雲端同步、郵件、聊天等字樣的一律不收
+- 只收偵測得到（`Detect`／`DetectFile`）的程式；`RegKey`（刪登錄）完全不執行
+- 規則指到磁碟根目錄、Windows、Program Files、使用者資料夾本身、事件記錄（`System32\winevt`）、
+  `Windows\Installer`（.tmp 以外）的一律略過
+- 匯入的項目預設不勾、只清 24 小時前的檔案，排程自動清理、系統匣快速清理、命令列預設範圍都不碰
+
+以 2026 年版的 winapp2.ini 測試：4,068 條規則裡收進本機有安裝的 23 條。winapp2.ini 以 CC-BY-SA 4.0 授權，程式不內附，使用時才下載。
+
+## 命令列
+
+```
+DiskSweeper.exe /list                          列出所有項目代號
+DiskSweeper.exe /scan [/items:a,b]             掃描並列出每項可清理的數量與大小
+DiskSweeper.exe /clean [/items:a,b] /yes       清理；沒有 /yes 只預演，不刪任何東西
+  /recycle    送進資源回收筒      /backup    先備份成 zip      /out:檔案   結果另存成文字檔
+```
+
+- 沒給 `/items` 時，用「排程自動清理」的範圍（左邊勾選的檔案類項目，不含隱私與社群規則）。不認得的代號直接報錯，不會猜。
+- 結束代碼：0 成功、1 有錯誤、2 參數錯誤。
+- 程式本身是視窗程式，輸出接到呼叫者的主控台：cmd 裡請用 `start /wait DiskSweeper.exe /scan`；
+  PowerShell 要放在管線裡（`DiskSweeper.exe /scan | Out-String`），否則 PowerShell 不會等它結束。
+
 ## 安全設計
 
 - **掃描與刪除分開**：掃描只讀；清理前一定確認，刪的就是畫面上列出的那些檔案
@@ -168,6 +204,11 @@ DiskCleaner\
 ├── app.manifest         # 一般權限、Per-Monitor V2 DPI
 ├── app.ico              # 程式圖示（16～256，執行檔、視窗、系統匣共用）
 ├── Program.cs           # 進入點、/auto 與 /lowspace 排程模式（共用 SafeClean）、程式圖示
+├── Cli.cs               # 命令列模式（/list /scan /clean）
+├── HealthCheck.cs       # 電腦健康檢查：檢查項目、分數、儀表與清單視窗
+├── DiskHealth.cs        # 磁碟健康（SMART）
+├── VhdxForm.cs          # WSL／Docker 虛擬磁碟的搜尋與壓縮
+├── Winapp2.cs           # winapp2.ini 解析、安全過濾、下載與管理視窗
 ├── MainForm.cs          # 主視窗：選單、橫幅、工作清單（三態勾選）、檔案清單、掃描與清理流程
 ├── HeaderPanel.cs       # 橫幅：漸層、跳動計數、今天／總計膠囊、系統磁碟卡片、忙碌流光
 ├── Theme.cs             # 配色、字型、選單配色（ModernRenderer）、卡片（CardPanel）
@@ -197,8 +238,23 @@ DiskCleaner\
 ├── Scheduler.cs         # 工作排程器（schtasks）
 ├── NativeMethods.cs     # 資源回收筒（查詢、清空、送入）、捷徑目標、系統圖示、內容對話框
 ├── Dialogs.cs           # 對話框外框（漸層標題列＋白卡片）、忽略清單、自訂資料夾、歷史記錄、選項
-└── Settings.cs          # 設定與歷史（%LOCALAPPDATA%\DiskCleaner）
+├── Settings.cs          # 設定與歷史（%LOCALAPPDATA%\DiskCleaner）
+├── Tests\DiskSweeper.Tests\  # xUnit 測試
+└── .github\workflows\build.yml  # GitHub Actions：建置、測試、上傳執行檔
 ```
+
+## 測試與 CI
+
+```
+dotnet test Tests\DiskSweeper.Tests\DiskSweeper.Tests.csproj -c Release
+```
+
+測試都在暫存資料夾裡建檔再刪，不碰真實的系統資料夾。涵蓋：路徑萬用字元展開、副檔名嚴格比對、
+**不跟進 junction**（junction 指到的外部檔案必須還在）、唯讀檔、忽略清單、受保護資料夾、自訂資料夾、
+自動清理範圍、winapp2.ini 的過濾規則、英文字典（格式字串、欄位規格、行尾空白）、解除安裝命令拆解、
+容量格式、健康分數、備份與還原。
+
+每次推送到 main 或開 PR，GitHub Actions 會在 Windows 上建置、跑測試，並把 `bin/Release/net48` 打包成 artifact 供下載。
 
 ## 授權
 

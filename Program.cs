@@ -23,6 +23,12 @@ namespace DiskCleaner
             // 語言要在建立任何畫面、讀任何字串之前決定。
             Lang.Init(Settings.Load().Language);
 
+            if (args.Length > 0 && Cli.IsCliArgument(args[0]))
+            {
+                Environment.Exit(Cli.Run(args));
+                return;
+            }
+
             string mode = args.Length > 0 ? args[0].ToLowerInvariant() : string.Empty;
             if (mode == "/auto") { Background.AutoClean(); return; }
             if (mode == "/lowspace") { Background.LowSpaceCheck(); return; }

@@ -18,6 +18,7 @@ namespace DiskCleaner
         public const string CatApps = "應用程式";
         public const string CatDev = "開發者";
         public const string CatPrivacy = "隱私";
+        public const string CatCommunity = "社群規則";
         public const string CatCustom = "自訂";
 
         private static string Win { get { return Environment.GetFolderPath(Environment.SpecialFolder.Windows); } }
@@ -205,6 +206,16 @@ namespace DiskCleaner
                 Target = drive + "Windows.old",
                 Description = Lang.T("大型更新後留下的舊系統，刪了就不能退回舊版"),
                 Warning = Lang.T("刪除 Windows.old 後就不能再退回之前的 Windows 版本，確定要勾選？")
+            };
+            yield return new CleanItem
+            {
+                Id = "win.hiberfil", Category = CatWindows, Name = Lang.T("休眠檔（hiberfil.sys）"), Icon = IconSettings,
+                Kind = ItemKind.Command, NeedsAdmin = true, DefaultChecked = false,
+                SizeFile = drive + "hiberfil.sys",
+                Target = Path.Combine(Environment.SystemDirectory, "powercfg.exe"),
+                Arguments = "/hibernate off",
+                Description = Lang.T("關閉休眠並刪除休眠檔（約為記憶體的 40%～75%）；之後不能休眠，「快速啟動」也會一起關閉"),
+                Warning = Lang.T("會關閉休眠功能並刪除休眠檔：之後無法休眠，Windows 的「快速啟動」也會一起關閉（開機可能慢幾秒）。\r\n想恢復時用系統管理員執行 powercfg /hibernate on。確定要勾選？")
             };
             yield return new CleanItem
             {

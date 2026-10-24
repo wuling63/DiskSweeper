@@ -1,0 +1,36 @@
+name: build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build
+        run: dotnet build DiskCleaner.csproj -c Release
+
+      - name: Test
+        run: dotnet test Tests/DiskSweeper.Tests/DiskSweeper.Tests.csproj -c Release --logger "trx;LogFileName=results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: Tests/DiskSweeper.Tests/TestResults/*.trx
+
+      - name: Upload DiskSweeper
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiskSweeper
+          path: bin/Release/net48/
