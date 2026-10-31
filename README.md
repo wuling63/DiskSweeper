@@ -134,6 +134,11 @@ Microsoft Store 的 App 不在這份清單裡。
 | | 舊版 Windows 🛡⚠ | `Windows.old`（takeown＋icacls 後整個刪，刪了不能退回舊版） | |
 | | Windows 元件存放區 🛡⚠ | `DISM /Online /Cleanup-Image /StartComponentCleanup` | |
 | | 休眠檔 🛡⚠ | `hiberfil.sys`（大小約記憶體的四成）；清理＝`powercfg /hibernate off`，同時關掉休眠與快速啟動 | |
+| 各磁碟 | 磁碟檢查留下的檔案片段 🛡 | 各本機磁碟根目錄 `FOUND.*\*.CHK` | |
+| | Windows 升級暫存 🛡⚠ | 各本機磁碟根目錄的 `$WINDOWS.~BT`、`$Windows.~WS`、`$GetCurrent`（清了不能退回舊版） | |
+| | Steam 著色器快取與暫存 | 各遊戲庫（`libraryfolders.vdf` 登記的，加上各磁碟的 `SteamLibrary`／`Steam`）的 `steamapps\shadercache`、`temp` | ✔ |
+| | Steam 未完成的下載 ⚠ | 各遊戲庫的 `steamapps\downloading` | |
+| | 隨身碟上的 macOS 隱藏檔 | 抽取式磁碟根目錄的 `._*`、`.DS_Store`、`.Spotlight-V100`、`.fseventsd`、`.Trashes` | |
 | 瀏覽器 | Internet Explorer | `INetCache` | ✔ |
 | | Edge／Chrome／Brave 快取 | 各設定檔的 `Cache`、`Code Cache`、`GPUCache` | ✔ |
 | | Firefox 快取 | 各設定檔的 `cache2` | ✔ |
@@ -150,11 +155,6 @@ Microsoft Store 的 App 不在這份清單裡。
 | | conda 安裝包 | `anaconda3／miniconda3…\pkgs` 的 .conda／.tar.bz2（同 `conda clean --tarballs`） | ✔ |
 | | Python __pycache__ | 開發專案資料夾底下的 `__pycache__` | ✔ |
 | | .mypy_cache／.pytest_cache／.ruff_cache | 開發專案資料夾底下 | ✔ |
-| 各磁碟 | 磁碟檢查留下的檔案片段 🛡 | 各本機磁碟根目錄 `FOUND.*\*.CHK` | |
-| | Windows 升級暫存 🛡⚠ | 各本機磁碟根目錄的 `$WINDOWS.~BT`、`$Windows.~WS`、`$GetCurrent`（清了不能退回舊版） | |
-| | Steam 著色器快取與暫存 | 各遊戲庫（`libraryfolders.vdf` 登記的，加上各磁碟的 `SteamLibrary`／`Steam`）的 `steamapps\shadercache`、`temp` | ✔ |
-| | Steam 未完成的下載 ⚠ | 各遊戲庫的 `steamapps\downloading` | |
-| | 隨身碟上的 macOS 隱藏檔 | 抽取式磁碟根目錄的 `._*`、`.DS_Store`、`.Spotlight-V100`、`.fseventsd`、`.Trashes` | |
 | 隱私 | 檔案總管搜尋與網址列紀錄 ⚠ | `Explorer\WordWheelQuery`、`TypedPaths` | |
 | | Office 最近使用的檔案 ⚠ | 各版本、各程式的 `File MRU`／`Place MRU`，以及 `Office\Recent` 捷徑 | |
 | | 剪貼簿 ⚠ | 目前複製的內容（Win+V 歷程記錄要在 Windows 設定裡清） | |
@@ -240,7 +240,7 @@ DiskCleaner\
 ├── CompressForm.cs      # NTFS 壓縮資料夾
 ├── Shredder.cs          # 檔案粉碎機
 ├── Cleaner.cs           # 掃描與刪除的引擎
-├── CleanItems.cs        # 清理項目定義（Windows／瀏覽器／應用程式／開發者／各磁碟／隱私／自訂）
+├── CleanItems.cs        # 清理項目定義（Windows／各磁碟／瀏覽器／應用程式／開發者／隱私／自訂）
 ├── Analysis.cs          # 資料夾大小樹、重複檔案、空資料夾的搜尋
 ├── AnalyzerForm.cs      # 磁碟分析工具視窗
 ├── TreemapPanel.cs      # 樹狀圖（squarified）

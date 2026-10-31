@@ -230,6 +230,19 @@ namespace DiskCleaner
             options.DropDownItems.Add(Lang.T("忽略清單…"), null, delegate { ShowIgnoreList(); });
             options.DropDownItems.Add(Lang.T("自訂義檔案和資料夾…"), null, delegate { ShowCustomFolders(); });
             options.DropDownItems.Add(Lang.T("社群清理規則（winapp2.ini）…"), null, delegate { ShowWinapp2(); });
+            options.DropDownItems.Add(new ToolStripSeparator());
+
+            // 語言直接放在選單上，不用進「選項」才找得到；名稱用各語言自己的寫法。
+            var language = new ToolStripMenuItem(Lang.T("語言"));
+            for (int i = 0; i < Lang.Codes.Length; i++)
+            {
+                string code = Lang.Codes[i];
+                language.DropDownItems.Add(new ToolStripMenuItem(Lang.NativeNames[i], null, delegate { ChangeLanguage(code); })
+                {
+                    Checked = code == Lang.Code
+                });
+            }
+            options.DropDownItems.Add(language);
 
             var help = new ToolStripMenuItem(Lang.T("說明"));
             help.DropDownItems.Add(Lang.T("關於"), null, delegate
@@ -1203,16 +1216,28 @@ namespace DiskCleaner
                 UpdateHeader();
                 _status.Text = Lang.T("選項已儲存");
 
-                if (languageChanged && Msg.Show(this, Lang.T("語言設定重新啟動後生效。要現在重新啟動嗎？"), Text,
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    SaveChecks();
-                    _settings.Save();
-                    _exiting = true;
-                    Process.Start(Application.ExecutablePath);
-                    Close();
-                }
+                if (languageChanged) AskRestartForLanguage();
             }
+        }
+
+        private void ChangeLanguage(string code)
+        {
+            if (code == _settings.Language || Busy()) return;
+            _settings.Language = code;
+            SaveChecks();
+            _settings.Save();
+            AskRestartForLanguage();
+        }
+
+        private void AskRestartForLanguage()
+        {
+            if (Msg.Show(this, Lang.T("語言設定重新啟動後生效。要現在重新啟動嗎？"), Text,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            SaveChecks();
+            _settings.Save();
+            _exiting = true;
+            Process.Start(Application.ExecutablePath);
+            Close();
         }
 
         private void ShowAnalyzer(int tab, string folder = null)

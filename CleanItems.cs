@@ -36,10 +36,10 @@ namespace DiskCleaner
         {
             var items = new List<CleanItem>();
             items.AddRange(WindowsItems());
+            items.AddRange(DriveItems());
             items.AddRange(BrowserItems());
             items.AddRange(AppItems());
             items.AddRange(DevItems(devRoots ?? new List<string>()));
-            items.AddRange(DriveItems());
             items.AddRange(PrivacyItems());
             return items;
         }

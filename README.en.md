@@ -136,6 +136,11 @@ Microsoft Store apps aren't in this list.
 | | Previous Windows 🛡⚠ | `Windows.old` (deleted whole after takeown + icacls; you can no longer roll back) | |
 | | Windows component store 🛡⚠ | `DISM /Online /Cleanup-Image /StartComponentCleanup` | |
 | | Hibernation file 🛡⚠ | `hiberfil.sys` (about 40% of RAM); cleaning = `powercfg /hibernate off`, which also disables hibernation and Fast Startup | |
+| All drives | CHKDSK file fragments 🛡 | `FOUND.*\*.CHK` at the root of each local drive | |
+| | Windows upgrade leftovers 🛡⚠ | `$WINDOWS.~BT`, `$Windows.~WS`, `$GetCurrent` at the root of each local drive (you can no longer roll back once removed) | |
+| | Steam shader cache and temp | `steamapps\shadercache` and `temp` in every library (those registered in `libraryfolders.vdf`, plus `SteamLibrary` / `Steam` on each drive) | ✔ |
+| | Unfinished Steam downloads ⚠ | `steamapps\downloading` in every library | |
+| | macOS hidden files on removable drives | `._*`, `.DS_Store`, `.Spotlight-V100`, `.fseventsd`, `.Trashes` at the root of removable drives | |
 | Browsers | Internet Explorer | `INetCache` | ✔ |
 | | Edge / Chrome / Brave cache | `Cache`, `Code Cache`, `GPUCache` of every profile | ✔ |
 | | Firefox cache | `cache2` of every profile | ✔ |
@@ -152,11 +157,6 @@ Microsoft Store apps aren't in this list.
 | | conda packages | .conda / .tar.bz2 in `anaconda3 / miniconda3…\pkgs` (same as `conda clean --tarballs`) | ✔ |
 | | Python __pycache__ | `__pycache__` under the development project folders | ✔ |
 | | .mypy_cache / .pytest_cache / .ruff_cache | Under the development project folders | ✔ |
-| All drives | CHKDSK file fragments 🛡 | `FOUND.*\*.CHK` at the root of each local drive | |
-| | Windows upgrade leftovers 🛡⚠ | `$WINDOWS.~BT`, `$Windows.~WS`, `$GetCurrent` at the root of each local drive (you can no longer roll back once removed) | |
-| | Steam shader cache and temp | `steamapps\shadercache` and `temp` in every library (those registered in `libraryfolders.vdf`, plus `SteamLibrary` / `Steam` on each drive) | ✔ |
-| | Unfinished Steam downloads ⚠ | `steamapps\downloading` in every library | |
-| | macOS hidden files on removable drives | `._*`, `.DS_Store`, `.Spotlight-V100`, `.fseventsd`, `.Trashes` at the root of removable drives | |
 | Privacy | File Explorer search and address history ⚠ | `Explorer\WordWheelQuery`, `TypedPaths` | |
 | | Office recent files ⚠ | `File MRU` / `Place MRU` of every version and app, plus `Office\Recent` shortcuts | |
 | | Clipboard ⚠ | Current clipboard content (Win+V history must be cleared in Windows Settings) | |
@@ -242,7 +242,7 @@ DiskCleaner\
 ├── CompressForm.cs      # NTFS folder compression
 ├── Shredder.cs          # file shredder
 ├── Cleaner.cs           # scanning and deletion engine
-├── CleanItems.cs        # cleanup item definitions (Windows / Browsers / Applications / Developer / All drives / Privacy / Custom)
+├── CleanItems.cs        # cleanup item definitions (Windows / All drives / Browsers / Applications / Developer / Privacy / Custom)
 ├── Analysis.cs          # folder size tree, duplicate files, empty folder search
 ├── AnalyzerForm.cs      # disk analysis tool window
 ├── TreemapPanel.cs      # treemap (squarified)
