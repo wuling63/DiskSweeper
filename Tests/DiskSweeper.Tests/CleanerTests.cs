@@ -45,6 +45,20 @@ namespace DiskCleaner.Tests
         }
 
         [Fact]
+        public void ExpandRoot_DriveTokenExpandsToEachFixedDrive()
+        {
+            var fixedRoots = DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Fixed && d.IsReady).Select(d => d.Name).ToList();
+
+            Assert.Equal(fixedRoots, Cleaner.ExpandRoot(Cleaner.FixedDrives).ToList());
+
+            // 系統碟一定有 Windows 資料夾；其他磁碟沒有的就不會列出來。
+            string windows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            var found = Cleaner.ExpandRoot(Cleaner.FixedDrives + @"\" + Path.GetFileName(windows)).ToList();
+            Assert.Contains(found, p => p.Equals(windows, StringComparison.OrdinalIgnoreCase));
+            Assert.All(found, p => Assert.Contains(Path.GetPathRoot(p), fixedRoots));
+        }
+
+        [Fact]
         public void Scan_ExtensionPatternIsStrict()
         {
             using (var t = new TempDir())

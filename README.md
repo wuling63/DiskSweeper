@@ -146,6 +146,11 @@ Microsoft Store 的 App 不在這份清單裡。
 | | conda 安裝包 | `anaconda3／miniconda3…\pkgs` 的 .conda／.tar.bz2（同 `conda clean --tarballs`） | ✔ |
 | | Python __pycache__ | 開發專案資料夾底下的 `__pycache__` | ✔ |
 | | .mypy_cache／.pytest_cache／.ruff_cache | 開發專案資料夾底下 | ✔ |
+| 各磁碟 | 磁碟檢查留下的檔案片段 🛡 | 各本機磁碟根目錄 `FOUND.*\*.CHK` | |
+| | Windows 升級暫存 🛡⚠ | 各本機磁碟根目錄的 `$WINDOWS.~BT`、`$Windows.~WS`、`$GetCurrent`（清了不能退回舊版） | |
+| | Steam 著色器快取與暫存 | 各遊戲庫（`libraryfolders.vdf` 登記的，加上各磁碟的 `SteamLibrary`／`Steam`）的 `steamapps\shadercache`、`temp` | ✔ |
+| | Steam 未完成的下載 ⚠ | 各遊戲庫的 `steamapps\downloading` | |
+| | 隨身碟上的 macOS 隱藏檔 | 抽取式磁碟根目錄的 `._*`、`.DS_Store`、`.Spotlight-V100`、`.fseventsd`、`.Trashes` | |
 | 隱私 | 檔案總管搜尋與網址列紀錄 ⚠ | `Explorer\WordWheelQuery`、`TypedPaths` | |
 | | Office 最近使用的檔案 ⚠ | 各版本、各程式的 `File MRU`／`Place MRU`，以及 `Office\Recent` 捷徑 | |
 | | 剪貼簿 ⚠ | 目前複製的內容（Win+V 歷程記錄要在 Windows 設定裡清） | |

@@ -364,13 +364,35 @@ namespace DiskCleaner
         private static readonly char[] Wildcards = { '*', '?' };
 
         /// <summary>
+        /// Root 用這兩個開頭時，在掃描當下展開成每一顆本機磁碟／抽取式磁碟的根目錄，
+        /// 例如 {fixed}\FOUND.*；插拔隨身碟後不用重新載入項目。
+        /// </summary>
+        public const string FixedDrives = "{fixed}", RemovableDrives = "{removable}";
+
+        /// <summary>
         /// 把 Root 裡含萬用字元的資料夾層展開成實際存在的資料夾。任何一層都可以有，
         /// 例如 User Data\*\Cache（每個設定檔）、Packages\Foo*\LocalState（winapp2 常見寫法）。
-        /// 不跟進 junction／符號連結。
+        /// 開頭是 {fixed}／{removable} 時先展開成各磁碟。不跟進 junction／符號連結。
         /// </summary>
         public static IEnumerable<string> ExpandRoot(string root)
         {
             root = (root ?? string.Empty).TrimEnd('\\');
+
+            DriveType? type = root.StartsWith(FixedDrives, StringComparison.OrdinalIgnoreCase) ? DriveType.Fixed
+                            : root.StartsWith(RemovableDrives, StringComparison.OrdinalIgnoreCase) ? DriveType.Removable
+                            : (DriveType?)null;
+            if (type != null)
+            {
+                string tail = root.Substring(root.IndexOf('}') + 1);
+                foreach (string drive in DriveRoots(type.Value))
+                {
+                    // 只有代號時就是磁碟根目錄本身（「X:」不帶反斜線會變成那顆磁碟的目前目錄，所以直接回傳 X:\）。
+                    if (tail.Length == 0) { yield return drive; continue; }
+                    foreach (string expanded in ExpandRoot(drive.TrimEnd('\\') + tail)) yield return expanded;
+                }
+                yield break;
+            }
+
             if (root.IndexOfAny(Wildcards) < 0)
             {
                 if (Directory.Exists(root)) yield return root;
@@ -396,6 +418,22 @@ namespace DiskCleaner
                 catch (Exception) { continue; }
                 string next = rest.Length == 0 ? sub : sub + "\\" + rest;
                 foreach (string expanded in ExpandRoot(next)) yield return expanded;
+            }
+        }
+
+        /// <summary>這種類型、目前可以讀的磁碟根目錄（X:\）；光碟機沒片、隨身碟剛拔掉的略過。</summary>
+        private static IEnumerable<string> DriveRoots(DriveType type)
+        {
+            DriveInfo[] drives;
+            try { drives = DriveInfo.GetDrives(); }
+            catch (Exception) { yield break; }
+
+            foreach (var d in drives)
+            {
+                bool ready;
+                try { ready = d.DriveType == type && d.IsReady; }
+                catch (Exception) { ready = false; }
+                if (ready) yield return d.Name;
             }
         }
 
@@ -482,7 +520,8 @@ namespace DiskCleaner
                 {
                     foreach (var rule in item.Rules.Where(r => string.IsNullOrEmpty(r.DirName)))
                     {
-                        foreach (string root in ExpandRoot(rule.Root)) RemoveEmptyDirs(root, true);
+                        // 磁碟根目錄不收空資料夾，免得把整顆磁碟上別人的空資料夾也刪掉。
+                        foreach (string root in ExpandRoot(rule.Root).Where(r => r.TrimEnd('\\').Length > 2)) RemoveEmptyDirs(root, true);
                     }
                 }
             }

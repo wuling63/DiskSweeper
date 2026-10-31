@@ -716,3 +716,16 @@ winapp2.ini：CCleaner／BleachBit 共用的社群規則（CC-BY-SA 4.0）	winap
 ，{0} 個指向不存在的程式	, {0} point to programs that no longer exist
 －	－
 ：請盡快備份重要資料	: back up important data soon
+各磁碟	All drives
+磁碟檢查留下的檔案片段	CHKDSK file fragments
+各本機磁碟根目錄 FOUND.000 裡的 .CHK（CHKDSK 修復時救回、多半無法辨識的殘片）	.CHK files in FOUND.000 at the root of each local drive (fragments recovered by CHKDSK, usually unreadable)
+Windows 升級暫存	Windows upgrade leftovers
+各本機磁碟根目錄的 $WINDOWS.~BT、$Windows.~WS、$GetCurrent（升級時的安裝檔與還原資料）	$WINDOWS.~BT, $Windows.~WS and $GetCurrent at the root of each local drive (upgrade setup files and rollback data)
+$WINDOWS.~BT 裡有退回舊版 Windows 需要的資料，清掉後就不能退回；Windows 正在升級時也不要清。確定要勾選？	$WINDOWS.~BT holds data needed to go back to the previous Windows version; once removed you can no longer go back. Don't clean it while Windows is upgrading. Select it anyway?
+Steam 著色器快取與暫存	Steam shader cache and temp
+各遊戲庫的 steamapps\\shadercache 與 temp，清掉後遊戲第一次載入會稍慢；Steam 開著時使用中的會略過	steamapps\\shadercache and temp in every library; games load a little slower the first time afterwards. Files in use while Steam is running are skipped
+Steam 未完成的下載	Unfinished Steam downloads
+各遊戲庫的 steamapps\\downloading（下載到一半或暫停中的遊戲與更新）	steamapps\\downloading in every library (partially downloaded or paused games and updates)
+會刪掉 Steam 還沒下載完（包括暫停中）的遊戲與更新，之後要從頭下載。請先關閉 Steam。確定要勾選？	Deletes Steam games and updates that haven't finished downloading (including paused ones); they will have to be downloaded again from scratch. Close Steam first. Select it anyway?
+隨身碟上的 macOS 隱藏檔	macOS hidden files on removable drives
+抽取式磁碟根目錄的 ._*、.DS_Store，以及 .Spotlight-V100、.fseventsd、.Trashes 等 Mac 自動建立的資料夾	._* and .DS_Store at the root of removable drives, plus folders a Mac creates automatically such as .Spotlight-V100, .fseventsd and .Trashes

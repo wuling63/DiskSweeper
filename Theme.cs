@@ -110,6 +110,7 @@ namespace DiskCleaner
                 case Cleaner.CatBrowser: return Amber;
                 case Cleaner.CatApps: return Color.FromArgb(139, 92, 246);
                 case Cleaner.CatDev: return Accent;
+                case Cleaner.CatDrives: return Color.FromArgb(14, 165, 233);
                 case Cleaner.CatPrivacy: return Color.FromArgb(244, 63, 94);
                 case Cleaner.CatCommunity: return Color.FromArgb(20, 184, 166);
                 default: return Color.FromArgb(100, 116, 139);

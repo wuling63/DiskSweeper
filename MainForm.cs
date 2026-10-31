@@ -587,6 +587,7 @@ namespace DiskCleaner
                          : group.Key == Cleaner.CatBrowser ? Cleaner.IconWorld
                          : group.Key == Cleaner.CatApps ? Cleaner.IconApp
                          : group.Key == Cleaner.CatDev ? Cleaner.IconDoc
+                         : group.Key == Cleaner.CatDrives ? Cleaner.IconDrive
                          : group.Key == Cleaner.CatPrivacy ? Cleaner.IconLock
                          : group.Key == Cleaner.CatCommunity ? Cleaner.IconWorld
                          : Cleaner.IconFolder;

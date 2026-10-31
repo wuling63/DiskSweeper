@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace DiskCleaner
 {
@@ -17,6 +19,7 @@ namespace DiskCleaner
         public const string CatBrowser = "瀏覽器";
         public const string CatApps = "應用程式";
         public const string CatDev = "開發者";
+        public const string CatDrives = "各磁碟";
         public const string CatPrivacy = "隱私";
         public const string CatCommunity = "社群規則";
         public const string CatCustom = "自訂";
@@ -36,6 +39,7 @@ namespace DiskCleaner
             items.AddRange(BrowserItems());
             items.AddRange(AppItems());
             items.AddRange(DevItems(devRoots ?? new List<string>()));
+            items.AddRange(DriveItems());
             items.AddRange(PrivacyItems());
             return items;
         }
@@ -405,6 +409,105 @@ namespace DiskCleaner
                 }
             }
             return rules;
+        }
+
+        // ───────────────────────────── 各磁碟 ─────────────────────────────
+        // 不是只在系統碟上的東西：每顆磁碟只看固定的幾個位置，不整顆磁碟遞迴搜尋。
+
+        private static IEnumerable<CleanItem> DriveItems()
+        {
+            yield return new CleanItem
+            {
+                Id = "drv.found", Category = CatDrives, Name = Lang.T("磁碟檢查留下的檔案片段"), Icon = IconDrive,
+                NeedsAdmin = true, DefaultChecked = false,
+                Description = Lang.T("各本機磁碟根目錄 FOUND.000 裡的 .CHK（CHKDSK 修復時救回、多半無法辨識的殘片）"),
+                Rules = { new ScanRule(FixedDrives + @"\FOUND.*", "*.CHK", false) }
+            };
+            yield return new CleanItem
+            {
+                Id = "drv.upgrade", Category = CatDrives, Name = Lang.T("Windows 升級暫存"), Icon = IconSettings,
+                NeedsAdmin = true, DefaultChecked = false, RemoveEmptyDirs = true,
+                Description = Lang.T("各本機磁碟根目錄的 $WINDOWS.~BT、$Windows.~WS、$GetCurrent（升級時的安裝檔與還原資料）"),
+                Warning = Lang.T("$WINDOWS.~BT 裡有退回舊版 Windows 需要的資料，清掉後就不能退回；Windows 正在升級時也不要清。確定要勾選？"),
+                Rules =
+                {
+                    new ScanRule(FixedDrives + @"\$WINDOWS.~BT"),
+                    new ScanRule(FixedDrives + @"\$Windows.~WS"),
+                    new ScanRule(FixedDrives + @"\$GetCurrent")
+                }
+            };
+
+            var steam = new CleanItem
+            {
+                Id = "drv.steam", Category = CatDrives, Name = Lang.T("Steam 著色器快取與暫存"), Icon = IconImage,
+                RemoveEmptyDirs = true,
+                Description = Lang.T("各遊戲庫的 steamapps\\shadercache 與 temp，清掉後遊戲第一次載入會稍慢；Steam 開著時使用中的會略過")
+            };
+            var downloading = new CleanItem
+            {
+                Id = "drv.steamdl", Category = CatDrives, Name = Lang.T("Steam 未完成的下載"), Icon = IconImage,
+                DefaultChecked = false, RemoveEmptyDirs = true,
+                Description = Lang.T("各遊戲庫的 steamapps\\downloading（下載到一半或暫停中的遊戲與更新）"),
+                Warning = Lang.T("會刪掉 Steam 還沒下載完（包括暫停中）的遊戲與更新，之後要從頭下載。請先關閉 Steam。確定要勾選？")
+            };
+            foreach (string lib in SteamLibraries())
+            {
+                steam.Rules.Add(new ScanRule(lib + @"\steamapps\shadercache"));
+                steam.Rules.Add(new ScanRule(lib + @"\steamapps\temp"));
+                downloading.Rules.Add(new ScanRule(lib + @"\steamapps\downloading"));
+            }
+            yield return steam;
+            yield return downloading;
+
+            yield return new CleanItem
+            {
+                Id = "drv.macjunk", Category = CatDrives, Name = Lang.T("隨身碟上的 macOS 隱藏檔"), Icon = IconDrive,
+                DefaultChecked = false,
+                Description = Lang.T("抽取式磁碟根目錄的 ._*、.DS_Store，以及 .Spotlight-V100、.fseventsd、.Trashes 等 Mac 自動建立的資料夾"),
+                Rules =
+                {
+                    new ScanRule(RemovableDrives, "._*", false),
+                    new ScanRule(RemovableDrives, ".DS_Store", false),
+                    new ScanRule(RemovableDrives + @"\.Spotlight-V100"),
+                    new ScanRule(RemovableDrives + @"\.fseventsd"),
+                    new ScanRule(RemovableDrives + @"\.Trashes"),
+                    new ScanRule(RemovableDrives + @"\.TemporaryItems")
+                }
+            };
+        }
+
+        /// <summary>
+        /// Steam 遊戲庫：Steam 本身的資料夾、libraryfolders.vdf 裡登記的其他庫，
+        /// 再加上各磁碟根目錄常見的 SteamLibrary／Steam（Steam 沒裝在這台、或設定檔讀不到時也找得到）。重複的掃描時會去掉。
+        /// </summary>
+        private static List<string> SteamLibraries()
+        {
+            var libs = new List<string> { FixedDrives + @"\SteamLibrary", FixedDrives + @"\Steam" };
+
+            string steam = null;
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    if (key != null) steam = key.GetValue("SteamPath") as string;
+                }
+            }
+            catch (Exception) { }
+            if (string.IsNullOrEmpty(steam)) return libs;
+
+            steam = steam.Replace('/', '\\');
+            libs.Add(steam);
+            try
+            {
+                // "path"		"D:\\SteamLibrary"
+                string vdf = File.ReadAllText(Path.Combine(steam, @"steamapps\libraryfolders.vdf"));
+                foreach (Match m in Regex.Matches(vdf, "\"path\"\\s+\"([^\"]+)\""))
+                {
+                    libs.Add(m.Groups[1].Value.Replace(@"\\", @"\"));
+                }
+            }
+            catch (Exception) { }
+            return libs;
         }
 
         // ───────────────────────────── 隱私（預設都不勾） ─────────────────────────────
