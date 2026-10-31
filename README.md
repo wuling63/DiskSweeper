@@ -2,6 +2,8 @@
 
 [![build](https://github.com/wuling63/DiskSweeper/actions/workflows/build.yml/badge.svg)](https://github.com/wuling63/DiskSweeper/actions/workflows/build.yml)
 
+中文 | [English](README.en.md)
+
 C# / .NET Framework 4.8 WinForms 桌面程式，掃描並刪除系統暫存、快取、錯誤報告等可以安全移除的檔案。
 版面仿一般的磁碟清理工具：上方綠色橫幅顯示今天／總計清理量與掃描結果，左邊是可勾選的工作清單，右邊是檔案明細。
 
@@ -196,6 +198,7 @@ DiskSweeper.exe /clean [/items:a,b] /yes       清理；沒有 /yes 只預演，
 - 不做登錄檔清理：省不了空間、對速度沒幫助，卻可能讓程式壞掉
 - 走目錄時**不跟進 junction／符號連結**，不會繞到資料夾外面去刪
 - 暫存類預設只清 24 小時前的檔案，避免刪到執行中程式剛寫的暫存
+- 「各磁碟」項目每顆磁碟只看固定幾個位置，不整顆磁碟遞迴搜尋；收空資料夾時不處理磁碟根目錄
 - 使用中、沒權限的檔案直接略過並計數；檔名是 `nul` 這類保留字時改用 `\\?\` 路徑刪
 - 無效捷徑只認「目標在本機固定磁碟、而且確定不存在」；沒有路徑的捷徑（MSI 宣告式、殼層項目）、網路磁碟、隨身碟上的一律當有效
 - 自訂資料夾不能選磁碟根目錄、Windows、Program Files、使用者資料夾本身
@@ -234,7 +237,7 @@ DiskCleaner\
 ├── CompressForm.cs      # NTFS 壓縮資料夾
 ├── Shredder.cs          # 檔案粉碎機
 ├── Cleaner.cs           # 掃描與刪除的引擎
-├── CleanItems.cs        # 清理項目定義（Windows／瀏覽器／應用程式／開發者／隱私／自訂）
+├── CleanItems.cs        # 清理項目定義（Windows／瀏覽器／應用程式／開發者／各磁碟／隱私／自訂）
 ├── Analysis.cs          # 資料夾大小樹、重複檔案、空資料夾的搜尋
 ├── AnalyzerForm.cs      # 磁碟分析工具視窗
 ├── TreemapPanel.cs      # 樹狀圖（squarified）
@@ -254,7 +257,7 @@ DiskCleaner\
 dotnet test Tests\DiskSweeper.Tests\DiskSweeper.Tests.csproj -c Release
 ```
 
-測試都在暫存資料夾裡建檔再刪，不碰真實的系統資料夾。涵蓋：路徑萬用字元展開、副檔名嚴格比對、
+測試都在暫存資料夾裡建檔再刪，不碰真實的系統資料夾。涵蓋：路徑萬用字元與磁碟代號展開、副檔名嚴格比對、
 **不跟進 junction**（junction 指到的外部檔案必須還在）、唯讀檔、忽略清單、受保護資料夾、自訂資料夾、
 自動清理範圍、winapp2.ini 的過濾規則、英文字典（格式字串、欄位規格、行尾空白）、解除安裝命令拆解、
 容量格式、健康分數、備份與還原。
