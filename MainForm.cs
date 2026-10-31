@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ namespace DiskCleaner
 
         private const int Unchecked = 0, Checked = 1, Mixed = 2;   // 樹狀清單的勾選狀態圖索引
 
-        private static readonly Font UiFont = new Font("Microsoft JhengHei UI", 9.5f);
+        private static readonly Font UiFont = new Font(Lang.FontName, 9.5f);
 
         private readonly Settings _settings = Settings.Load();
         private readonly bool _isAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);

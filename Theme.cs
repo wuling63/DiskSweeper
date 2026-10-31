@@ -118,11 +118,11 @@ namespace DiskCleaner
         }
 
         // ── 字型 ──
-        public static readonly Font Ui = new Font("Microsoft JhengHei UI", 9.5f);
-        public static readonly Font UiBold = new Font("Microsoft JhengHei UI", 9.5f, FontStyle.Bold);
-        public static readonly Font Small = new Font("Microsoft JhengHei UI", 8.5f);
-        public static readonly Font SmallBold = new Font("Microsoft JhengHei UI", 8.5f, FontStyle.Bold);
-        public static readonly Font Title = new Font("Microsoft JhengHei UI", 11f, FontStyle.Bold);
+        public static readonly Font Ui = new Font(Lang.FontName, 9.5f);
+        public static readonly Font UiBold = new Font(Lang.FontName, 9.5f, FontStyle.Bold);
+        public static readonly Font Small = new Font(Lang.FontName, 8.5f);
+        public static readonly Font SmallBold = new Font(Lang.FontName, 8.5f, FontStyle.Bold);
+        public static readonly Font Title = new Font(Lang.FontName, 11f, FontStyle.Bold);
         public static readonly Font Number = new Font("Segoe UI Semibold", 30f);
         public static readonly Font NumberSmall = new Font("Segoe UI Semibold", 12f);
 

@@ -7,7 +7,7 @@
 A C# / .NET Framework 4.8 WinForms desktop app that scans for and deletes files that are safe to remove: system temp files, caches, error reports and so on.
 The layout follows the usual disk-cleaner pattern: a green banner at the top shows how much was cleaned today and in total plus the scan result, a checkable task list on the left, and file details on the right.
 
-The UI is available in Traditional Chinese and English (**Settings → Options → Language**, takes effect after a restart).
+The UI is available in Traditional Chinese, Simplified Chinese, Japanese, Korean and English (**Settings → Options → Language**, takes effect after a restart).
 
 ## Build and run
 
@@ -69,9 +69,11 @@ Below the banner are **cards for every drive** (local, removable and network): l
 
 - **Appearance**: Follow system / Light / Dark, applied immediately to every open window; dark mode also darkens title bars, scroll bars and list headers.
   With "Follow system", the app switches when Windows switches between light and dark.
-- **Language**: Chinese (Traditional) / English, takes effect after a restart. Every UI string in the source is wrapped in `Lang.T("…")`, and the English dictionary is the embedded `en.txt`
-  (one `Chinese<Tab>English` pair per line, with `\r \n \\` escapes and trailing spaces written as `\s`). Format strings are translated before values are filled in, so dynamic messages are full English sentences too.
-  New strings must be added to `en.txt` as well; missing ones stay in Chinese.
+- **Language**: Traditional Chinese / Simplified Chinese / Japanese / Korean / English, takes effect after a restart; the UI font switches to each language's Windows UI font
+  (JhengHei / YaHei / Yu Gothic UI / Malgun Gothic). Every UI string in the source is wrapped in `Lang.T("…")`, and the dictionaries are the embedded
+  `en.txt`, `zh-CN.txt`, `ja.txt` and `ko.txt` (one `Traditional Chinese<Tab>translation` pair per line, with `\r \n \\` escapes and trailing spaces written as `\s`).
+  Format strings are translated before values are filled in, so dynamic messages are fully translated sentences too. New strings must be added to all four dictionaries
+  (a test checks they contain the same keys); strings missing from Japanese or Korean fall back to English.
 - **System tray**: minimizing or closing the window sends it to the tray; right-click the icon for **Quick clean** (same scope as the weekly automatic cleanup), reopen the window or exit.
 - **Back up before cleaning**: files to be deleted are first zipped into `%LOCALAPPDATA%\DiskCleaner\Backup\yyyyMMdd_HHmmss.zip`. Single files over 200 MB,
   and anything beyond 2 GB per batch, aren't backed up; the retention period is configurable (7 days by default). Nothing extra is backed up when sending to the Recycle Bin.
@@ -228,7 +230,8 @@ DiskCleaner\
 ├── Widgets.cs           # rounded search box, alert card, tree without horizontal scroll bar
 ├── MessageDialog.cs     # replacement for the system MessageBox (colored icon, pill buttons)
 ├── ToolWindow.cs        # shared tool window frame (gradient title bar, content, status bar)
-├── Lang.cs / en.txt     # UI language and English dictionary
+├── Lang.cs              # UI language and font
+├── en.txt / zh-CN.txt / ja.txt / ko.txt  # English, Simplified Chinese, Japanese and Korean dictionaries
 ├── Backup.cs            # backup before cleaning and restore, backup manager window
 ├── Startup.cs           # startup programs
 ├── ServicesForm.cs      # background services

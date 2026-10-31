@@ -42,7 +42,7 @@ namespace DiskCleaner
         public AnalyzerForm(int tab)
         {
             Text = Lang.T("磁碟分析工具");
-            Font = new Font("Microsoft JhengHei UI", 9.5f);
+            Font = new Font(Lang.FontName, 9.5f);
             Icon = AppIcon.Get();
             StartPosition = FormStartPosition.CenterParent;
             ClientSize = new Size(1100, 720);

@@ -269,7 +269,7 @@ namespace DiskCleaner
         private float _shown;
         private readonly System.Windows.Forms.Timer _anim = new System.Windows.Forms.Timer { Interval = 15 };
         public string Caption { get; set; }
-        private static readonly Font GradeFont = new Font("Microsoft JhengHei UI", 16f, FontStyle.Bold);
+        private static readonly Font GradeFont = new Font(Lang.FontName, 16f, FontStyle.Bold);
 
         public ScoreGauge()
         {

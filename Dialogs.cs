@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -327,7 +327,6 @@ namespace DiskCleaner
         private readonly NumericUpDown _backupDays = new NumericUpDown { Minimum = 1, Maximum = 90, Width = 60 };
 
         private static readonly string[] AppearanceCodes = { "system", "light", "dark" };
-        private static readonly string[] LanguageCodes = { "zh", "en" };
 
         public int MinAgeHours { get { return (int)_hours.Value; } }
         public bool UseRecycleBin { get { return _recycle.Checked; } }
@@ -337,7 +336,7 @@ namespace DiskCleaner
         public string AutoCleanTime { get { return _time.Value.ToString("HH:mm"); } }
         public bool LowSpaceCheck { get { return _low.Checked; } }
         public string Appearance { get { return AppearanceCodes[Math.Max(0, _appearance.SelectedIndex)]; } }
-        public string Language { get { return LanguageCodes[Math.Max(0, _language.SelectedIndex)]; } }
+        public string Language { get { return Lang.Codes[Math.Max(0, _language.SelectedIndex)]; } }
         public bool MinimizeToTray { get { return _minTray.Checked; } }
         public bool CloseToTray { get { return _closeTray.Checked; } }
         public bool BackupBeforeClean { get { return _backup.Checked; } }
@@ -358,8 +357,8 @@ namespace DiskCleaner
             _low.Checked = settings.LowSpaceCheck;
             _appearance.Items.AddRange(new object[] { Lang.T("跟隨系統"), Lang.T("淺色"), Lang.T("深色") });
             _appearance.SelectedIndex = Math.Max(0, Array.IndexOf(AppearanceCodes, settings.Appearance));
-            _language.Items.AddRange(new object[] { Lang.T("中文（繁體）"), "English" });
-            _language.SelectedIndex = Math.Max(0, Array.IndexOf(LanguageCodes, settings.Language));
+            _language.Items.AddRange(Lang.NativeNames);
+            _language.SelectedIndex = Math.Max(0, Array.IndexOf(Lang.Codes, settings.Language));
             _minTray.Checked = settings.MinimizeToTray;
             _closeTray.Checked = settings.CloseToTray;
             _backup.Checked = settings.BackupBeforeClean;
@@ -426,7 +425,7 @@ namespace DiskCleaner
 
         private static Label Title(string text)
         {
-            return new Label { Text = text, AutoSize = true, Font = new Font("Microsoft JhengHei UI", 9.5f, FontStyle.Bold), Margin = new Padding(0, 10, 0, 4) };
+            return new Label { Text = text, AutoSize = true, Font = new Font(Lang.FontName, 9.5f, FontStyle.Bold), Margin = new Padding(0, 10, 0, 4) };
         }
 
         private static Label Hint(string text)

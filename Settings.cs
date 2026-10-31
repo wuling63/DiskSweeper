@@ -50,7 +50,7 @@ namespace DiskCleaner
         /// <summary>外觀："system"（跟著 Windows）、"light"、"dark"。</summary>
         public string Appearance { get; set; }
 
-        /// <summary>介面語言："zh" 或 "en"，重新啟動後生效。</summary>
+        /// <summary>介面語言：Lang.Codes 其中之一（"zh"、"zh-CN"、"ja"、"ko"、"en"），重新啟動後生效。</summary>
         public string Language { get; set; }
 
         public bool MinimizeToTray { get; set; }

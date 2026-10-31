@@ -17,7 +17,7 @@ namespace DiskCleaner
         private static readonly Color G2 = Color.FromArgb(13, 148, 136);
         private static readonly Color G3 = Color.FromArgb(14, 94, 112);
 
-        private readonly Font _hintFont = new Font("Microsoft JhengHei UI", 10f);
+        private readonly Font _hintFont = new Font(Lang.FontName, 10f);
         private readonly Timer _timer = new Timer { Interval = 16 };
 
         private long _today, _total;
@@ -46,7 +46,7 @@ namespace DiskCleaner
             {
                 Text = Lang.T("掃瞄"),
                 Size = new Size(176, 52),
-                Font = new Font("Microsoft JhengHei UI", 12.5f, FontStyle.Bold),
+                Font = new Font(Lang.FontName, 12.5f, FontStyle.Bold),
                 Accent = Color.FromArgb(34, 197, 94),
                 Anchor = AnchorStyles.Top | AnchorStyles.Right
             };

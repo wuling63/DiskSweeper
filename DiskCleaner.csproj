@@ -38,8 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- 英文介面的字典（每行「中文、Tab、英文」），見 Lang.cs。 -->
+    <!-- 各語言介面的字典（每行「繁體中文、Tab、譯文」），見 Lang.cs。 -->
     <EmbeddedResource Include="en.txt" LogicalName="DiskCleaner.en.txt" />
+    <EmbeddedResource Include="zh-CN.txt" LogicalName="DiskCleaner.zh-CN.txt" />
+    <EmbeddedResource Include="ja.txt" LogicalName="DiskCleaner.ja.txt" />
+    <EmbeddedResource Include="ko.txt" LogicalName="DiskCleaner.ko.txt" />
     <!-- 視窗與系統匣也用同一個圖示。 -->
     <EmbeddedResource Include="app.ico" LogicalName="DiskCleaner.app.ico" />
   </ItemGroup>

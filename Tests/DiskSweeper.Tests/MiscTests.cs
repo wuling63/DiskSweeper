@@ -35,6 +35,62 @@ namespace DiskCleaner.Tests
             Lang.Init("zh");
             Assert.Equal("掃瞄", Lang.T("掃瞄"));
         }
+
+        [Fact]
+        public void UnknownLanguage_FallsBackToTraditionalChinese()
+        {
+            Lang.Init("xx");
+            Assert.Equal("zh", Lang.Code);
+            Assert.Equal("掃瞄", Lang.T("掃瞄"));
+        }
+
+        /// <summary>每個語言的字典都要跟英文字典同一組句子，格式字串的 {0} 一個都不能少。</summary>
+        [Theory]
+        [InlineData("zh-CN")]
+        [InlineData("ja")]
+        [InlineData("ko")]
+        public void Dictionary_CoversEveryEnglishKeyWithSamePlaceholders(string code)
+        {
+            var english = ReadDictionary("en");
+            var other = ReadDictionary(code);
+            Assert.Empty(english.Keys.Except(other.Keys));
+            Assert.Empty(other.Keys.Except(english.Keys));
+            foreach (var pair in other)
+            {
+                Assert.False(string.IsNullOrWhiteSpace(pair.Value), code + " 空白譯文：" + pair.Key);
+                var expected = System.Text.RegularExpressions.Regex.Matches(pair.Key, @"\{\d+(:[^}]*)?\}").Cast<System.Text.RegularExpressions.Match>().Select(m => m.Value).OrderBy(s => s);
+                var actual = System.Text.RegularExpressions.Regex.Matches(pair.Value, @"\{\d+(:[^}]*)?\}").Cast<System.Text.RegularExpressions.Match>().Select(m => m.Value).OrderBy(s => s);
+                Assert.True(expected.SequenceEqual(actual), code + " 格式參數不符：" + pair.Key);
+            }
+
+            Lang.Init(code);
+            try
+            {
+                Assert.Equal(code, Lang.Code);
+                Assert.Equal(other["掃瞄"], Lang.T("掃瞄"));
+            }
+            finally
+            {
+                Lang.Init("zh");
+            }
+        }
+
+        private static Dictionary<string, string> ReadDictionary(string code)
+        {
+            var map = new Dictionary<string, string>(StringComparer.Ordinal);
+            using (var stream = typeof(Lang).Assembly.GetManifestResourceStream("DiskCleaner." + code + ".txt"))
+            using (var reader = new StreamReader(stream, System.Text.Encoding.UTF8))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    int tab = line.IndexOf('\t');
+                    if (tab <= 0 || line.StartsWith("#", StringComparison.Ordinal)) continue;
+                    map[line.Substring(0, tab)] = line.Substring(tab + 1);
+                }
+            }
+            return map;
+        }
     }
 
     public class SplitCommandTests

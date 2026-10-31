@@ -33,7 +33,7 @@ namespace DiskCleaner
         public InstalledAppsForm()
         {
             Text = Lang.T("已安裝的程式");
-            Font = new Font("Microsoft JhengHei UI", 9.5f);
+            Font = new Font(Lang.FontName, 9.5f);
             Icon = AppIcon.Get();
             StartPosition = FormStartPosition.CenterParent;
             ClientSize = new Size(1180, 700);
